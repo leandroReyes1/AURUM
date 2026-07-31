@@ -1,4 +1,7 @@
+import { AppointmentService } from './appointments/AppointmentService.js';
+
 document.addEventListener('DOMContentLoaded', () => {
+  const appointmentService = new AppointmentService();
   const header = document.querySelector('.header');
   const navToggle = document.querySelector('.nav-toggle');
   const navMenu = document.querySelector('.nav-menu');
@@ -128,24 +131,16 @@ document.addEventListener('DOMContentLoaded', () => {
       const time = document.getElementById('appointment-time').value;
       const notes = document.getElementById('client-notes').value;
 
-      // Create new appointment record
-      const appointment = {
-        id: 'APT-' + Math.floor(1000 + Math.random() * 9000), // Nice short ID
+      // Create new appointment record using the service
+      const appointment = appointmentService.createAppointment({
         name,
         phone,
         email,
         study,
         date,
         time,
-        notes,
-        status: 'Pendiente',
-        createdAt: new Date().toISOString()
-      };
-
-      // Push to localStorage
-      const appointments = JSON.parse(localStorage.getItem('aurum_appointments') || '[]');
-      appointments.push(appointment);
-      localStorage.setItem('aurum_appointments', JSON.stringify(appointments));
+        notes
+      });
 
       // Show success feedback
       successStudy.textContent = study;
@@ -175,7 +170,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Prepopulate localStorage with mock appointments if empty
   const mockInit = () => {
-    if (!localStorage.getItem('aurum_appointments')) {
+    if (appointmentService.getAllAppointments().length === 0) {
       const today = new Date().toISOString().split('T')[0];
       const tomorrow = new Date(Date.now() + 86400000).toISOString().split('T')[0];
       const yesterday = new Date(Date.now() - 86400000).toISOString().split('T')[0];
@@ -230,7 +225,7 @@ document.addEventListener('DOMContentLoaded', () => {
           createdAt: new Date().toISOString()
         }
       ];
-      localStorage.setItem('aurum_appointments', JSON.stringify(mockData));
+      appointmentService.repository.saveAll(mockData);
     }
   };
   mockInit();

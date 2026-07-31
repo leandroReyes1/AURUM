@@ -1,4 +1,7 @@
+import { AppointmentService } from './appointments/AppointmentService.js';
+
 document.addEventListener('DOMContentLoaded', () => {
+  const appointmentService = new AppointmentService();
   // DOM Elements - Sidebar & Tabs
   const menuItems = document.querySelectorAll('.menu-item');
   const tabPanes = document.querySelectorAll('.tab-pane');
@@ -81,38 +84,18 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // 3. Data Retrieval
-  const getAppointments = () => {
-    return JSON.parse(localStorage.getItem('aurum_appointments') || '[]');
-  };
-
-  const saveAppointments = (appointments) => {
-    localStorage.setItem('aurum_appointments', JSON.stringify(appointments));
-  };
-
-  // 4. Update Stats & Metrics
+  // 3. Update Stats & Metrics
   const calculateMetrics = () => {
-    const appointments = getAppointments();
-    const total = appointments.length;
-    const pending = appointments.filter(a => a.status === 'Pendiente').length;
-    const confirmed = appointments.filter(a => a.status === 'Confirmada').length;
-    const completed = appointments.filter(a => a.status === 'Completada').length;
-    
-    // Rate of success: (Confirmed + Completed) / (Total - Cancelled)
-    const activeTotal = appointments.filter(a => a.status !== 'Cancelada').length;
-    const confirmedTotal = confirmed + completed;
-    
-    const rate = activeTotal > 0 ? Math.round((confirmedTotal / activeTotal) * 100) : 0;
-
-    statTotal.textContent = total;
-    statPending.textContent = pending;
-    statConfirmed.textContent = confirmed;
-    statRate.textContent = `${rate}%`;
+    const metrics = appointmentService.getMetrics();
+    statTotal.textContent = metrics.total;
+    statPending.textContent = metrics.pending;
+    statConfirmed.textContent = metrics.confirmed;
+    statRate.textContent = `${metrics.rate}%`;
   };
 
-  // 5. Render Table Rows with dynamic filters
+  // 4. Render Table Rows with dynamic filters
   const renderTable = () => {
-    const appointments = getAppointments();
+    const appointments = appointmentService.getAllAppointments();
     const query = searchInput.value.toLowerCase().trim();
     const studyFilter = filterStudy.value;
     const statusFilter = filterStatus.value;
@@ -219,13 +202,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
-  // 6. Update Status Function
+  // 5. Update Status Function
   const updateAppointmentStatus = (id, newStatus) => {
-    const appointments = getAppointments();
-    const index = appointments.findIndex(a => a.id === id);
-    if (index !== -1) {
-      appointments[index].status = newStatus;
-      saveAppointments(appointments);
+    const updated = appointmentService.updateStatus(id, newStatus);
+    if (updated) {
       calculateMetrics();
       renderTable();
       
@@ -238,10 +218,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
-  // 7. Modal Control
+  // 6. Modal Control
   const openDetailsModal = (id) => {
-    const appointments = getAppointments();
-    const apt = appointments.find(a => a.id === id);
+    const apt = appointmentService.getAppointmentById(id);
     if (apt) {
       activeAppointmentId = id;
       detailName.textContent = apt.name;
@@ -313,11 +292,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   btnSaveNotes.addEventListener('click', () => {
     if (activeAppointmentId) {
-      const appointments = getAppointments();
-      const index = appointments.findIndex(a => a.id === activeAppointmentId);
-      if (index !== -1) {
-        appointments[index].notes = detailNotes.value;
-        saveAppointments(appointments);
+      const updated = appointmentService.updateNotes(activeAppointmentId, detailNotes.value);
+      if (updated) {
         renderTable();
         alert('Notas guardadas correctamente.');
       }
@@ -340,14 +316,8 @@ document.addEventListener('DOMContentLoaded', () => {
   if (btnSaveReschedule) {
     btnSaveReschedule.addEventListener('click', () => {
       if (activeAppointmentId) {
-        const appointments = getAppointments();
-        const index = appointments.findIndex(a => a.id === activeAppointmentId);
-        if (index !== -1) {
-          appointments[index].date = rescheduleDate.value;
-          appointments[index].time = rescheduleTime.value;
-          appointments[index].status = 'Confirmada'; // Confirmed on reschedule
-          saveAppointments(appointments);
-          
+        const updated = appointmentService.reschedule(activeAppointmentId, rescheduleDate.value, rescheduleTime.value);
+        if (updated) {
           calculateMetrics();
           renderTable();
           closeDetailsModal();
@@ -362,19 +332,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const studyChart = document.getElementById('study-chart');
     if (!studyChart) return;
 
-    const appointments = getAppointments();
-    
-    // Count frequencies
+    const counts = appointmentService.getStudyDistribution();
     const studies = ['Mastografía', 'Ultrasonido Mamario', 'Resonancia Magnética', 'Tomografía', 'Consulta Oncológica'];
-    const counts = {};
-    
-    studies.forEach(s => counts[s] = 0);
-    appointments.forEach(apt => {
-      if (counts[apt.study] !== undefined) {
-        counts[apt.study]++;
-      }
-    });
-
     const maxCount = Math.max(...Object.values(counts), 1); // Avoid division by zero
 
     studyChart.innerHTML = '';
