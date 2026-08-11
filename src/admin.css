@@ -5,40 +5,43 @@
   --color-primary: #4A154B;
   --color-primary-light: #6A2D6B;
   --color-primary-dark: #350E36;
-  
+
   --color-accent: #E91E63;
   --color-accent-light: #F48FB1;
   --color-accent-dark: #C2185B;
-  
+
   --color-success: #10B981;
   --color-success-light: #D1FAE5;
   --color-warning: #F59E0B;
   --color-warning-light: #FEF3C7;
   --color-danger: #EF4444;
   --color-danger-light: #FEE2E2;
-  
+
   /* Neutral colors */
   --color-bg-main: #F8F9FC;
-  --color-bg-sidebar: #1E081F; /* Ultra deep purple sidebar */
+  --color-bg-sidebar: #1E081F;
+  /* Ultra deep purple sidebar */
   --color-text-main: #1E293B;
   --color-text-muted: #64748B;
   --color-white: #FFFFFF;
-  
+
   /* Layout dimensions */
   --sidebar-width: 260px;
   --border-radius: 12px;
-  
+
   /* Typography */
   --font-title: 'Outfit', sans-serif;
   --font-body: 'Inter', sans-serif;
-  
+
   /* Transitions */
   --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   --transition-fast: all 0.15s ease-out;
 }
 
 /* Base resets */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -85,7 +88,8 @@ body {
 .sidebar-logo {
   height: 50px;
   width: auto;
-  filter: brightness(0) invert(1); /* Forces logo to white for dark sidebar */
+  filter: brightness(0) invert(1);
+  /* Forces logo to white for dark sidebar */
 }
 
 .admin-badge {
@@ -213,7 +217,7 @@ body {
 .tab-pane {
   display: none;
   flex-direction: column;
-  height: 100%;
+  flex-grow: 1;
 }
 
 .tab-pane.active {
@@ -369,6 +373,7 @@ body {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
   border: 1px solid rgba(74, 21, 75, 0.02);
   overflow: hidden;
+  margin-bottom: 2rem;
 }
 
 .admin-table {
@@ -563,7 +568,8 @@ body {
   background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-accent) 100%);
   height: 100%;
   border-radius: 50px;
-  width: 0%; /* Dynamic */
+  width: 0%;
+  /* Dynamic */
   transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -626,6 +632,9 @@ body {
   transform: translateY(20px);
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   overflow: hidden;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .modal.open .modal-content {
@@ -665,6 +674,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
+  overflow-y: auto;
 }
 
 .detail-row {
@@ -797,6 +807,7 @@ body {
   .stats-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+
   .analytics-container {
     grid-template-columns: 1fr;
   }
@@ -806,34 +817,42 @@ body {
   body {
     overflow-y: auto;
   }
+
   .admin-layout {
     flex-direction: column;
     height: auto;
   }
+
   .sidebar {
     width: 100%;
     border-right: none;
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     padding: 1.5rem;
   }
+
   .sidebar-brand {
     margin-bottom: 1.5rem;
   }
+
   .main-content {
     padding: 1.5rem;
   }
+
   .stats-grid {
     grid-template-columns: 1fr;
     gap: 1rem;
   }
+
   .filter-bar {
     flex-direction: column;
     align-items: stretch;
     padding: 1rem;
   }
+
   .search-box {
     max-width: 100%;
   }
+
   .filter-options {
     flex-direction: column;
   }
@@ -865,8 +884,15 @@ body {
 }
 
 @keyframes slideDown {
-  from { opacity: 0; transform: translateY(-10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Custom Flatpickr Theme for Aurum */
@@ -879,19 +905,19 @@ body {
   padding: 0.5rem !important;
 }
 
-.flatpickr-day.selected, 
-.flatpickr-day.startRange, 
-.flatpickr-day.endRange, 
-.flatpickr-day.selected.inRange, 
-.flatpickr-day.startRange.inRange, 
-.flatpickr-day.endRange.inRange, 
-.flatpickr-day.selected:focus, 
-.flatpickr-day.startRange:focus, 
-.flatpickr-day.endRange:focus, 
-.flatpickr-day.selected:hover, 
-.flatpickr-day.startRange:hover, 
-.flatpickr-day.endRange:hover, 
-.flatpickr-day.prevMonthDay.selected, 
+.flatpickr-day.selected,
+.flatpickr-day.startRange,
+.flatpickr-day.endRange,
+.flatpickr-day.selected.inRange,
+.flatpickr-day.startRange.inRange,
+.flatpickr-day.endRange.inRange,
+.flatpickr-day.selected:focus,
+.flatpickr-day.startRange:focus,
+.flatpickr-day.endRange:focus,
+.flatpickr-day.selected:hover,
+.flatpickr-day.startRange:hover,
+.flatpickr-day.endRange:hover,
+.flatpickr-day.prevMonthDay.selected,
 .flatpickr-day.nextMonthDay.selected {
   background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%) !important;
   border-color: transparent !important;
@@ -900,11 +926,11 @@ body {
   border-radius: 50% !important;
 }
 
-.flatpickr-day:hover, 
-.flatpickr-day.prevMonthDay:hover, 
-.flatpickr-day.nextMonthDay:hover, 
-.flatpickr-day.today:hover, 
-.flatpickr-day.today.prevMonthDay:hover, 
+.flatpickr-day:hover,
+.flatpickr-day.prevMonthDay:hover,
+.flatpickr-day.nextMonthDay:hover,
+.flatpickr-day.today:hover,
+.flatpickr-day.today.prevMonthDay:hover,
 .flatpickr-day.today.nextMonthDay:hover {
   background-color: rgba(233, 30, 99, 0.08) !important;
   border-color: transparent !important;
@@ -935,17 +961,17 @@ body {
   color: var(--color-primary-dark) !important;
 }
 
-.flatpickr-calendar.arrowTop:after, 
+.flatpickr-calendar.arrowTop:after,
 .flatpickr-calendar.arrowTop:before {
   border-bottom-color: var(--color-white) !important;
 }
 
-.flatpickr-calendar.arrowBottom:after, 
+.flatpickr-calendar.arrowBottom:after,
 .flatpickr-calendar.arrowBottom:before {
   border-top-color: var(--color-white) !important;
 }
 
-.flatpickr-months .flatpickr-prev-month:hover svg, 
+.flatpickr-months .flatpickr-prev-month:hover svg,
 .flatpickr-months .flatpickr-next-month:hover svg {
   fill: var(--color-accent) !important;
 }
