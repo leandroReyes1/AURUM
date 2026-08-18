@@ -18,6 +18,8 @@ services:
     container_name: aurum_frontend
     env_file:
       - .env
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     restart: unless-stopped
 
   api:
@@ -25,4 +27,6 @@ services:
     container_name: aurum_backend
     env_file:
       - ../API/.env
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     restart: unless-stopped
