@@ -10,6 +10,7 @@ const app = express();
 const PORT = 4000;
 
 // 2. Middlewares de Seguridad Globales
+app.set('trust proxy', 1);
 app.use(helmet({
   contentSecurityPolicy: false, // Desactivado temporalmente para no bloquear scripts externos (Tailwind, FontAwesome)
 }));
