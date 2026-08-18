@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const resetMessage = document.getElementById('reset-message');
   const submitBtn = document.querySelector('.login-btn');
 
-  const API_AUTH_URL = 'http://localhost:5000/api/auth';
+  const API_AUTH_URL = '/api/auth';
 
   // Extraer token de la URL (Ej: reset-password.html?token=12345)
   const urlParams = new URLSearchParams(window.location.search);

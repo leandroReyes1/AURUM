@@ -1,7 +1,7 @@
 import { AppointmentService } from './appointments/AppointmentService.js';
 
 // URL base de la API de autenticación
-const API_AUTH_URL = 'http://localhost:5000/api/auth';
+const API_AUTH_URL = '/api/auth';
 
 // Validar sesión antes de mostrar la página completa
 async function checkAuth() {
@@ -142,7 +142,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     "09:00", "09:30", "10:00", "10:30", "11:00", "11:30",
     "12:00", "12:30", "13:00", "13:30"
   ];
-  const API_BASE_URL = window.location.port === '4000' ? '/api' : 'http://localhost:4000/api';
+  const API_BASE_URL = '/api';
 
   if (document.getElementById('new-apt-date')) {
     flatpickr('#new-apt-date', {
@@ -431,7 +431,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     };
 
     try {
-      const API_BASE_URL = window.location.port === '4000' ? '/api' : 'http://localhost:4000/api';
+      const API_BASE_URL = '/api';
       const response = await fetch(`${API_BASE_URL}/citas/${activeAppointmentId}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },

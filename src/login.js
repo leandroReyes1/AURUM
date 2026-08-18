@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const loginBtn = document.querySelector('.login-btn');
 
   // URL base de la API de autenticación (Puerto 5000 configurado en el backend de auth)
-  const API_AUTH_URL = 'http://localhost:5000/api/auth';
+  const API_AUTH_URL = '/api/auth';
 
   // Lógica para mostrar/ocultar contraseña
   const togglePasswordBtn = document.getElementById('toggle-password');
