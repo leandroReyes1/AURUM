@@ -78,8 +78,20 @@ document.addEventListener('DOMContentLoaded', async () => {
   
   const btnSaveAllChanges = document.getElementById('btn-save-all-changes');
 
+  // DOM Elements - New Appointment Modal
+  const btnOpenNewApt = document.getElementById('btn-open-new-apt');
+  const btnCloseNewApt = document.getElementById('btn-close-new-apt');
+  const btnCancelNewApt = document.getElementById('btn-cancel-new-apt');
+  const newAppointmentModal = document.getElementById('new-appointment-modal');
+  const newAppointmentForm = document.getElementById('new-appointment-form');
+  const newAptStudy = document.getElementById('new-apt-study');
+  const newAptDate = document.getElementById('new-apt-date');
+  const newAptTime = document.getElementById('new-apt-time');
+  const newAptSex = document.getElementById('new-apt-sex');
+  const btnSubmitNewApt = document.getElementById('btn-submit-new-apt');
   let activeAppointmentId = null;
   let currentHistorialFiltered = []; // Guardará las citas actualmente visibles en el historial
+  let newAptSexChoices = null;
 
   // Inicializar Flatpickr para el input de fecha del modal
   flatpickr('#detail-date-input', {
@@ -95,6 +107,83 @@ document.addEventListener('DOMContentLoaded', async () => {
       renderHistorialTable();
     }
   });
+
+  // Configuración base de Choices.js
+  const choicesConfig = {
+    searchEnabled: false,
+    itemSelectText: '',
+    shouldSort: false,
+    position: 'bottom'
+  };
+
+  // Inicializar selectores estáticos con Choices.js
+  let filterStudyChoices, newAptStudyChoices, filterStatusChoices, historialStatusChoices;
+  let detailTimeChoices, detailStatusChoices, newAptTimeChoices;
+
+  if (filterStudy) filterStudyChoices = new Choices(filterStudy, choicesConfig);
+  if (filterStatus) filterStatusChoices = new Choices(filterStatus, choicesConfig);
+  if (historialStatusFilter) historialStatusChoices = new Choices(historialStatusFilter, choicesConfig);
+  if (newAptStudy) newAptStudyChoices = new Choices(newAptStudy, choicesConfig);
+  if (detailTimeInput) detailTimeChoices = new Choices(detailTimeInput, choicesConfig);
+  if (detailStatusSelect) detailStatusChoices = new Choices(detailStatusSelect, choicesConfig);
+  if (newAptTime) {
+    newAptTimeChoices = new Choices(newAptTime, choicesConfig);
+    newAptTime.removeAttribute('required');
+  }
+
+  // Si hay selects requeridos, quitar el required para no bloquear el submit silenciosamente
+  if (newAptStudy) newAptStudy.removeAttribute('required');
+  if (newAptSex) {
+    newAptSexChoices = new Choices(newAptSex, choicesConfig);
+    newAptSex.removeAttribute('required');
+  }
+
+  const ALL_AVAILABLE_TIMES = [
+    "09:00", "09:30", "10:00", "10:30", "11:00", "11:30",
+    "12:00", "12:30", "13:00", "13:30"
+  ];
+  const API_BASE_URL = window.location.port === '4000' ? '/api' : 'http://localhost:4000/api';
+
+  if (document.getElementById('new-apt-date')) {
+    flatpickr('#new-apt-date', {
+      locale: "es",
+      minDate: "today",
+      dateFormat: "Y-m-d",
+      disable: [
+        function (date) {
+          return (date.getDay() === 0 || date.getDay() === 6);
+        }
+      ],
+      onChange: async function (selectedDates, dateStr, instance) {
+        if (!dateStr) return;
+        newAptTimeChoices.disable();
+        newAptTimeChoices.clearStore();
+        newAptTimeChoices.setChoices([{ value: '', label: 'Selecciona un horario', placeholder: true }], 'value', 'label', true);
+
+        try {
+          const response = await fetch(`${API_BASE_URL}/horarios-disponibles?fecha=${dateStr}`);
+          const bookedTimesArray = await response.json();
+
+          const freeTimes = ALL_AVAILABLE_TIMES.filter(time => !bookedTimesArray.includes(time));
+
+          if (freeTimes.length > 0) {
+            const timeOptions = [{ value: '', label: 'Selecciona un horario', placeholder: true }];
+            freeTimes.forEach(time => timeOptions.push({ value: time, label: time }));
+            newAptTimeChoices.clearStore();
+            newAptTimeChoices.setChoices(timeOptions, 'value', 'label', true);
+            newAptTimeChoices.enable();
+          } else {
+            newAptTimeChoices.clearStore();
+            newAptTimeChoices.setChoices([{ value: '', label: 'No hay horarios libres', placeholder: true }], 'value', 'label', true);
+          }
+        } catch (error) {
+          console.error("Error al cargar horarios:", error);
+          newAptTimeChoices.clearStore();
+          newAptTimeChoices.setChoices([{ value: '', label: 'Error al cargar', placeholder: true }], 'value', 'label', true);
+        }
+      }
+    });
+  }
 
   // 1. Current Date Header
   const updateCurrentDate = () => {
@@ -160,8 +249,17 @@ document.addEventListener('DOMContentLoaded', async () => {
       const matchesStudy = (studyFilter === 'All') || (apt.estudio === studyFilter);
       const matchesStatus = (statusFilter === 'All') || (apt.estado === statusFilter);
       const isDashboardStatus = apt.estado === 'Pendiente' || apt.estado === 'Confirmada';
+      
+      let isFuture = true;
+      if (apt.fecha_cita) {
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        // split('T')[0] ensures we parse local midnight, avoiding timezone shifts
+        const aptDate = new Date(apt.fecha_cita.split('T')[0] + 'T00:00:00'); 
+        isFuture = aptDate >= today;
+      }
 
-      return matchesSearch && matchesStudy && matchesStatus && isDashboardStatus;
+      return matchesSearch && matchesStudy && matchesStatus && isDashboardStatus && isFuture;
     });
 
     // Limpiar filas anteriores
@@ -232,9 +330,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.querySelectorAll('.btn-action.reschedule').forEach(btn => {
       btn.addEventListener('click', (e) => { e.stopPropagation();
         openDetailsModal(btn.getAttribute('data-id'));
-        if (rescheduleSection) {
-          rescheduleSection.style.display = 'block';
-        }
+        // Eliminado la referencia a rescheduleSection ya que el modal de detalles se encarga de esto.
       });
     });
 
@@ -414,19 +510,19 @@ document.addEventListener('DOMContentLoaded', async () => {
   if (cardTotal) {
     cardTotal.addEventListener('click', () => {
       // Al cliquear total, solo filtramos pendientes y confirmadas
-      filterStatus.value = 'All';
+      filterStatusChoices.setChoiceByValue('All');
       renderTable();
     });
   }
   if (cardPending) {
     cardPending.addEventListener('click', () => {
-      filterStatus.value = 'Pendiente';
+      filterStatusChoices.setChoiceByValue('Pendiente');
       renderTable();
     });
   }
   if (cardConfirmed) {
     cardConfirmed.addEventListener('click', () => {
-      filterStatus.value = 'Confirmada';
+      filterStatusChoices.setChoiceByValue('Confirmada');
       renderTable();
     });
   }
@@ -619,16 +715,18 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // Función de inicialización asíncrona
   const initializeApp = async () => {
-    // Cargar estudios para el filtro
     const estudios = await appointmentService.fetchEstudios();
     if (filterStudy && estudios && estudios.length > 0) {
-      filterStudy.innerHTML = '<option value="All">Todos los Estudios</option>';
+      const allStudiesOptions = [{ value: 'All', label: 'Todos los Estudios', placeholder: true }];
+      const newAptStudyOptions = [{ value: '', label: 'Selecciona un estudio', placeholder: true }];
+
       estudios.forEach(estudio => {
-        const option = document.createElement('option');
-        option.value = estudio.nombre_estudio;
-        option.textContent = estudio.nombre_estudio;
-        filterStudy.appendChild(option);
+        allStudiesOptions.push({ value: estudio.nombre_estudio, label: estudio.nombre_estudio });
+        newAptStudyOptions.push({ value: estudio.nombre_estudio, label: estudio.nombre_estudio });
       });
+
+      if (filterStudyChoices) filterStudyChoices.setChoices(allStudiesOptions, 'value', 'label', true);
+      if (newAptStudyChoices) newAptStudyChoices.setChoices(newAptStudyOptions, 'value', 'label', true);
     }
 
     await appointmentService.fetchAppointments(); // Cargar datos de la API
@@ -649,7 +747,85 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   }
 
-  // 13. Lógica de Cerrar Sesión
+  // 13. Lógica para Registrar Nueva Cita Manualmente
+  const openNewAptModal = () => {
+    newAppointmentForm.reset();
+    if (newAptStudyChoices) newAptStudyChoices.setChoiceByValue('');
+    if (newAptSexChoices) newAptSexChoices.setChoiceByValue('');
+    if (newAptTimeChoices) {
+      newAptTimeChoices.disable();
+      newAptTimeChoices.clearStore();
+      newAptTimeChoices.setChoices([{ value: '', label: 'Selecciona un horario', placeholder: true }], 'value', 'label', true);
+    }
+    newAppointmentModal.classList.add('open');
+  };
+
+  const closeNewAptModal = () => {
+    newAppointmentModal.classList.remove('open');
+  };
+
+  if (btnOpenNewApt) btnOpenNewApt.addEventListener('click', openNewAptModal);
+  if (btnCloseNewApt) btnCloseNewApt.addEventListener('click', closeNewAptModal);
+  if (btnCancelNewApt) btnCancelNewApt.addEventListener('click', closeNewAptModal);
+
+  window.addEventListener('click', (e) => {
+    if (e.target === newAppointmentModal) closeNewAptModal();
+  });
+
+  if (newAppointmentForm) {
+    newAppointmentForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const studyVal = newAptStudy.value;
+      const timeVal = newAptTime.value;
+
+      if (!studyVal || !timeVal) {
+        alert("Por favor, asegúrate de seleccionar un Estudio y un Horario.");
+        return;
+      }
+
+      btnSubmitNewApt.disabled = true;
+      btnSubmitNewApt.textContent = 'Guardando...';
+
+      const formData = {
+        nombre_completo: document.getElementById('new-apt-name').value.trim(),
+        telefono: document.getElementById('new-apt-phone').value.trim(),
+        correo: document.getElementById('new-apt-email').value.trim(),
+        estudio: studyVal,
+        fecha_cita: newAptDate.value,
+        hora_cita: timeVal,
+        edad: document.getElementById('new-apt-age').value.trim(),
+        sexo: newAptSex ? newAptSex.value : ''
+      };
+
+      try {
+        const response = await fetch(`${API_BASE_URL}/citas`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(formData)
+        });
+
+        if (response.ok) {
+          closeNewAptModal();
+          await appointmentService.fetchAppointments();
+          calculateMetrics();
+          renderTable();
+          renderHistorialTable();
+        } else {
+          const err = await response.json();
+          alert('Error al guardar cita: ' + (err.message || 'Intente de nuevo.'));
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        alert('Error de conexión.');
+      } finally {
+        btnSubmitNewApt.disabled = false;
+        btnSubmitNewApt.textContent = 'Registrar Cita';
+      }
+    });
+  }
+
+  // 14. Lógica de Cerrar Sesión
   const btnLogout = document.getElementById('btn-logout');
   if (btnLogout) {
     btnLogout.addEventListener('click', async (e) => {

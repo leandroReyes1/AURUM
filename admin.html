@@ -14,9 +14,11 @@
 
   <!-- Estilos del Dashboard -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css" />
   <link rel="stylesheet" href="./src/admin.css">
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/es.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
 
   <!-- Librerías para exportar a PDF -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -172,18 +174,25 @@
             <input type="text" id="search-input" placeholder="Buscar por paciente, teléfono o correo...">
           </div>
 
-          <div class="filter-options">
+          <div class="filter-options" style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;">
+            <button id="btn-open-new-apt" class="btn-primary"
+              style="display: flex; align-items: center; gap: 0.5rem; padding: 0.6rem 1rem; border-radius: 8px; font-size: 0.85rem; font-weight: 600; cursor: pointer;">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+              Nueva Cita
+            </button>
             <select id="filter-study">
               <option value="All">Todos los Estudios</option>
-              <option value="" disabled>Cargando estudios...</option>
+              <option value="" disabled>Selecciona un estudio</option>
             </select>
 
             <select id="filter-status">
               <option value="All">Todos los Estados</option>
               <option value="Pendiente">Pendientes</option>
               <option value="Confirmada">Confirmadas</option>
-              <option value="Completada">Completadas</option>
-              <option value="Cancelada">Canceladas</option>
             </select>
           </div>
         </div>
@@ -373,6 +382,87 @@
         </div>
       </div>
     </div>
+  </div>
+
+  <!-- Modal de Nueva Cita -->
+  <div id="new-appointment-modal" class="modal">
+    <div class="modal-content" style="max-width: 500px;">
+      <div class="modal-header">
+        <h2>Registrar Nueva Cita</h2>
+        <button id="btn-close-new-apt" class="btn-close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="new-appointment-form">
+          <div class="detail-row vertical" style="margin-bottom: 1rem;">
+            <label class="detail-label" style="margin-bottom: 0.5rem; display: block;">Nombre Completo del Paciente</label>
+            <input type="text" id="new-apt-name" required placeholder="Nombre completo"
+              style="width: 100%; padding: 0.6rem; font-size: 0.85rem; border-radius: 8px; border: 1px solid rgba(74, 21, 75, 0.15); outline: none; background-color: var(--color-bg-main);">
+          </div>
+          
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+            <div class="detail-row vertical">
+              <label class="detail-label" style="margin-bottom: 0.5rem; display: block;">Teléfono</label>
+              <input type="tel" id="new-apt-phone" required placeholder="10 dígitos" pattern="[0-9]{10}"
+                style="width: 100%; padding: 0.6rem; font-size: 0.85rem; border-radius: 8px; border: 1px solid rgba(74, 21, 75, 0.15); outline: none; background-color: var(--color-bg-main);">
+            </div>
+            <div class="detail-row vertical">
+              <label class="detail-label" style="margin-bottom: 0.5rem; display: block;">Correo Electrónico</label>
+              <input type="email" id="new-apt-email" required placeholder="correo@ejemplo.com"
+                style="width: 100%; padding: 0.6rem; font-size: 0.85rem; border-radius: 8px; border: 1px solid rgba(74, 21, 75, 0.15); outline: none; background-color: var(--color-bg-main);">
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+            <div class="detail-row vertical">
+              <label class="detail-label" style="margin-bottom: 0.5rem; display: block;">Edad</label>
+              <input type="number" id="new-apt-age" required placeholder="Edad" min="0"
+                style="width: 100%; padding: 0.6rem; font-size: 0.85rem; border-radius: 8px; border: 1px solid rgba(74, 21, 75, 0.15); outline: none; background-color: var(--color-bg-main);">
+            </div>
+            <div class="detail-row vertical">
+              <label class="detail-label" style="margin-bottom: 0.5rem; display: block;">Sexo</label>
+              <select id="new-apt-sex" required
+                style="width: 100%; padding: 0.6rem; font-size: 0.85rem; border-radius: 8px; border: 1px solid rgba(74, 21, 75, 0.15); outline: none; background-color: var(--color-bg-main); cursor: pointer;">
+                <option value="">Selecciona sexo</option>
+                <option value="Femenino">Femenino</option>
+                <option value="Masculino">Masculino</option>
+                <option value="Otro">Otro</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="detail-row vertical" style="margin-bottom: 1rem;">
+            <label class="detail-label" style="margin-bottom: 0.5rem; display: block;">Estudio Solicitado</label>
+            <select id="new-apt-study" required
+              style="width: 100%; padding: 0.6rem; font-size: 0.85rem; border-radius: 8px; border: 1px solid rgba(74, 21, 75, 0.15); outline: none; background-color: var(--color-bg-main); cursor: pointer;">
+              <option value="">Selecciona un estudio</option>
+            </select>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem;">
+            <div class="detail-row vertical">
+              <label class="detail-label" style="margin-bottom: 0.5rem; display: block;">Fecha</label>
+              <input type="text" id="new-apt-date" required placeholder="Seleccione fecha" autocomplete="off"
+                style="width: 100%; padding: 0.6rem; font-size: 0.85rem; border-radius: 8px; border: 1px solid rgba(74, 21, 75, 0.15); outline: none; background-color: var(--color-bg-main); cursor: pointer;">
+            </div>
+            <div class="detail-row vertical">
+              <label class="detail-label" style="margin-bottom: 0.5rem; display: block;">Hora</label>
+              <select id="new-apt-time" required disabled
+                style="width: 100%; padding: 0.6rem; font-size: 0.85rem; border-radius: 8px; border: 1px solid rgba(74, 21, 75, 0.15); outline: none; background-color: var(--color-bg-main); cursor: pointer;">
+                <option value="">Selecciona un horario</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="modal-footer" style="display: flex; justify-content: flex-end; gap: 1rem; margin-top: 1rem;">
+            <button type="button" id="btn-cancel-new-apt" class="btn-secondary-outline"
+              style="padding: 0.75rem 1.5rem; font-size: 1rem; border-radius: 8px;">Cancelar</button>
+            <button type="submit" id="btn-submit-new-apt" class="btn-success"
+              style="padding: 0.75rem 1.5rem; font-size: 1rem; border-radius: 8px; background-color: var(--color-aurum-purple); border-color: var(--color-aurum-purple);">Registrar Cita</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 
     <!-- Scripts del Dashboard -->
     <script type="module" src="./src/admin.js"></script>

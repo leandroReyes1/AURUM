@@ -90,11 +90,14 @@ export const createCita = async (req, res) => {
 
     await connection.beginTransaction();
 
-    let [pacientes] = await connection.execute('SELECT id FROM pacientes WHERE telefono = ?', [telefono]);
+    let [pacientes] = await connection.execute(
+      'SELECT id FROM pacientes WHERE telefono = ? AND nombre_completo = ? LIMIT 1', 
+      [telefono, nombre_completo]
+    );
     let pacienteId;
     if (pacientes.length > 0) {
       pacienteId = pacientes[0].id;
-      // Opcional: actualizar datos del paciente si ya existía
+      // Actualizamos edad, sexo y email si los proveen nuevos
       await connection.execute('UPDATE pacientes SET edad = ?, sexo = ?, email = ? WHERE id = ?', [edad || null, sexo || null, correo || null, pacienteId]);
     } else {
       const [result] = await connection.execute('INSERT INTO pacientes (nombre_completo, telefono, edad, sexo, email) VALUES (?, ?, ?, ?, ?)', [nombre_completo, telefono, edad || null, sexo || null, correo || null]);
@@ -132,6 +135,9 @@ export const createCita = async (req, res) => {
   } catch (error) {
     await connection.rollback();
     console.error('Error al crear la cita:', error);
+    if (error.code === 'ER_DUP_ENTRY') {
+      return res.status(400).json({ message: 'El correo electrónico o teléfono ya se encuentra registrado con otro paciente.' });
+    }
     res.status(500).json({ message: 'Error interno del servidor al crear la cita.' });
   } finally {
     connection.release();

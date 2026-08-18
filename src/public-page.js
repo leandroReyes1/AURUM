@@ -15,8 +15,30 @@ const submitButton = document.getElementById('form-submit-button');
 const dateInput = document.getElementById('form-fecha');
 const timeSelect = document.getElementById('form-hora');
 const studySelect = document.getElementById('form-estudio');
+const sexSelect = document.getElementById('form-sexo');
 
 if (appointmentForm) {
+  // Inicializar Choices.js para selects premium
+  const choicesConfig = {
+    searchEnabled: false,
+    itemSelectText: '',
+    shouldSort: false,
+    position: 'bottom'
+  };
+  
+  let studyChoices, timeChoices;
+  try {
+    studyChoices = new Choices(studySelect, choicesConfig);
+    timeChoices = new Choices(timeSelect, choicesConfig);
+    if (sexSelect) new Choices(sexSelect, choicesConfig);
+  } catch (error) {
+    console.warn("No se pudo cargar Choices.js. Se usarán selects nativos.", error);
+  }
+
+  // Remover 'required' para evitar que el navegador bloquee silenciosamente el submit
+  studySelect.removeAttribute('required');
+  timeSelect.removeAttribute('required');
+  if (sexSelect) sexSelect.removeAttribute('required');
   // Horarios de atención disponibles
   const ALL_AVAILABLE_TIMES = [
     "09:00", "09:30", "10:00", "10:30", "11:00", "11:30",
@@ -33,36 +55,39 @@ if (appointmentForm) {
       if (!response.ok) throw new Error('No se pudieron cargar los estudios.');
 
       const studies = await response.json();
-      studySelect.innerHTML = '<option value="">Selecciona un estudio</option>'; // Limpiar y poner placeholder
+      
+      const studyOptions = [{ value: '', label: 'Selecciona un estudio', placeholder: true }];
       studies.forEach(study => {
-        // Usamos study.nombre_estudio que es lo que el backend espera
-        const option = new Option(study.nombre_estudio, study.nombre_estudio);
-        studySelect.add(option);
+        studyOptions.push({ value: study.nombre_estudio, label: study.nombre_estudio });
       });
-      studySelect.disabled = false;
+      
+      studyChoices.setChoices(studyOptions, 'value', 'label', true);
+      studyChoices.enable();
     } catch (error) {
       console.error("Error al cargar estudios:", error);
-      studySelect.innerHTML = '<option value="">Error al cargar estudios</option>';
+      studyChoices.setChoices([{ value: '', label: 'Error al cargar estudios', placeholder: true }], 'value', 'label', true);
     }
   };
 
-  // 1. Inicializar el calendario (Flatpickr)
-  flatpickr(dateInput, {
-    locale: "es",
-    minDate: "today",
-    dateFormat: "Y-m-d",
-    disable: [
-      function (date) {
-        // Deshabilitar Sábados (6) y Domingos (0)
-        return (date.getDay() === 0 || date.getDay() === 6);
-      }
-    ],
+  // 1. Inicializar el calendario (Flatpickr con estilo premium)
+  if (typeof window.flatpickr !== 'undefined') {
+    window.flatpickr(dateInput, {
+      locale: "es",
+      minDate: "today",
+      dateFormat: "Y-m-d",
+      disable: [
+        function (date) {
+          // Deshabilitar Sábados (6) y Domingos (0)
+          return (date.getDay() === 0 || date.getDay() === 6);
+        }
+      ],
     // Se activa cuando el usuario selecciona una fecha
     onChange: async function (selectedDates, dateStr, instance) {
       if (!dateStr) return;
 
-      timeSelect.disabled = true;
-      timeSelect.innerHTML = '<option>Cargando horarios...</option>';
+      timeChoices.disable();
+      timeChoices.clearStore();
+      timeChoices.setChoices([{ value: '', label: 'Selecciona un horario', placeholder: true }], 'value', 'label', true);
 
       try {
         // 2. Consultar a la API los horarios ocupados
@@ -72,24 +97,26 @@ if (appointmentForm) {
         // 3. Filtrar para obtener solo los horarios libres
         const freeTimes = ALL_AVAILABLE_TIMES.filter(time => !bookedTimesArray.includes(time));
 
-        timeSelect.innerHTML = ''; // Limpiar opciones
-
         if (freeTimes.length > 0) {
-          timeSelect.innerHTML = '<option value="">Selecciona un horario</option>';
-          freeTimes.forEach(time => {
-            const option = new Option(time, time);
-            timeSelect.add(option);
-          });
-          timeSelect.disabled = false;
+          const timeOptions = [{ value: '', label: 'Selecciona un horario', placeholder: true }];
+          freeTimes.forEach(time => timeOptions.push({ value: time, label: time }));
+          timeChoices.clearStore();
+          timeChoices.setChoices(timeOptions, 'value', 'label', true);
+          timeChoices.enable();
         } else {
-          timeSelect.innerHTML = '<option>No hay horarios libres</option>';
+          timeChoices.clearStore();
+          timeChoices.setChoices([{ value: '', label: 'No hay horarios libres', placeholder: true }], 'value', 'label', true);
         }
       } catch (error) {
         console.error("Error al cargar horarios:", error);
-        timeSelect.innerHTML = '<option>Error al cargar</option>';
+        timeChoices.clearStore();
+        timeChoices.setChoices([{ value: '', label: 'Error al cargar', placeholder: true }], 'value', 'label', true);
       }
-    },
+    }
   });
+  } else {
+    console.error("Flatpickr no cargó correctamente desde el CDN.");
+  }
 
   // 4. Manejar el envío del formulario
   appointmentForm.addEventListener('submit', async (e) => {
@@ -101,12 +128,20 @@ if (appointmentForm) {
       nombre_completo: document.getElementById('form-nombre').value,
       telefono: document.getElementById('form-telefono').value,
       edad: document.getElementById('form-edad').value,
-      sexo: document.getElementById('form-sexo').value,
+      sexo: sexSelect ? sexSelect.value : '',
       correo: document.getElementById('form-correo').value,
       fecha_cita: dateInput.value,
       hora_cita: timeSelect.value,
-      estudio: document.getElementById('form-estudio').value,
+      estudio: studySelect.value,
     };
+
+    // Validación manual para los selects de Choices.js
+    if (!formData.estudio || !formData.hora_cita) {
+      alert("Por favor, asegúrate de seleccionar un Estudio y un Horario.");
+      submitButton.disabled = false;
+      submitButton.textContent = 'Confirmar Cita';
+      return;
+    }
 
     try {
       const response = await fetch(`${API_BASE_URL}/citas`, {

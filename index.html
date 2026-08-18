@@ -44,46 +44,14 @@
   <!-- Font Awesome 6 CDN -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
-  <!-- Flatpickr (para el calendario) -->
+  <!-- Flatpickr (Calendario Premium) -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 
-  <style>
-    html { scroll-behavior: smooth; }
-    body { -webkit-font-smoothing: antialiased; }
+  <!-- Choices.js (Menús Desplegables Premium) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css" />
 
-    /* Nav underline animation */
-    .nav-link-custom::after {
-      content: '';
-      position: absolute;
-      bottom: 0; left: 0;
-      width: 0; height: 2px;
-      background: #E91E63;
-      transition: width 0.3s ease;
-    }
-    .nav-link-custom:hover::after,
-    .nav-link-custom.active::after {
-      width: 100%;
-    }
 
-    /* Hero gradient bg */
-    .hero-bg {
-      background:
-        radial-gradient(circle at 90% 10%, rgba(74,21,75,0.08) 0%, transparent 50%),
-        radial-gradient(circle at 10% 90%, rgba(233,30,99,0.06) 0%, transparent 50%),
-        #FAFAFD;
-    }
-
-    /* WhatsApp pulse */
-    @keyframes pulse-wa {
-      0%, 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5); }
-      50% { box-shadow: 0 0 0 12px rgba(37, 211, 102, 0); }
-    }
-
-    /* Mobile bottom nav padding */
-    @media (max-width: 767px) {
-      body { padding-bottom: 64px; }
-    }
-  </style>
+  <link rel="stylesheet" href="./src/index.css">
 </head>
 
 <body class="font-body bg-aurum-bg text-gray-800 leading-relaxed overflow-x-hidden">
@@ -127,26 +95,32 @@
   </header>
 
   <!-- Mobile Bottom Nav -->
-  <nav class="fixed bottom-0 left-0 w-full z-50 bg-white/95 backdrop-blur-lg border-t border-gray-200 shadow-[0_-4px_20px_rgba(0,0,0,0.06)] md:hidden"
-       aria-label="Navegación móvil">
+  <nav
+    class="fixed bottom-0 left-0 w-full z-50 bg-white/95 backdrop-blur-lg border-t border-gray-200 shadow-[0_-4px_20px_rgba(0,0,0,0.06)] md:hidden"
+    aria-label="Navegación móvil">
     <div class="flex items-center justify-around py-2 px-1">
-      <a href="#inicio" class="flex flex-col items-center gap-0.5 px-2 py-1 text-gray-500 hover:text-aurum-purple transition-colors">
+      <a href="#inicio"
+        class="flex flex-col items-center gap-0.5 px-2 py-1 text-gray-500 hover:text-aurum-purple transition-colors">
         <i class="fas fa-home text-lg"></i>
         <span class="text-[10px] font-medium">Inicio</span>
       </a>
-      <a href="#nosotros" class="flex flex-col items-center gap-0.5 px-2 py-1 text-gray-500 hover:text-aurum-purple transition-colors">
+      <a href="#nosotros"
+        class="flex flex-col items-center gap-0.5 px-2 py-1 text-gray-500 hover:text-aurum-purple transition-colors">
         <i class="fas fa-user-md text-lg"></i>
         <span class="text-[10px] font-medium">Nosotros</span>
       </a>
-      <a href="#servicios" class="flex flex-col items-center gap-0.5 px-2 py-1 text-gray-500 hover:text-aurum-purple transition-colors">
+      <a href="#servicios"
+        class="flex flex-col items-center gap-0.5 px-2 py-1 text-gray-500 hover:text-aurum-purple transition-colors">
         <i class="fas fa-stethoscope text-lg"></i>
         <span class="text-[10px] font-medium">Servicios</span>
       </a>
-      <a href="#operacion" class="flex flex-col items-center gap-0.5 px-2 py-1 text-gray-500 hover:text-aurum-purple transition-colors">
+      <a href="#operacion"
+        class="flex flex-col items-center gap-0.5 px-2 py-1 text-gray-500 hover:text-aurum-purple transition-colors">
         <i class="fas fa-map-marker-alt text-lg"></i>
         <span class="text-[10px] font-medium">Encuéntranos</span>
       </a>
-      <a href="#citas" class="flex flex-col items-center gap-0.5 px-2 py-1 text-aurum-pink font-semibold transition-colors">
+      <a href="#citas"
+        class="flex flex-col items-center gap-0.5 px-2 py-1 text-aurum-pink font-semibold transition-colors">
         <i class="fas fa-calendar-check text-lg"></i>
         <span class="text-[10px] font-medium">Agendar Cita</span>
       </a>
@@ -201,8 +175,8 @@
         <div class="flex justify-center">
           <div
             class="w-full max-w-sm bg-gradient-to-br from-gray-100 to-gray-50 rounded-2xl overflow-hidden flex flex-col items-center justify-center h-96 border border-gray-200 shadow-sm">
-            <i class="fas fa-user-md text-7xl text-gray-300 mb-4"></i>
-            <p class="text-sm text-gray-400 font-medium">Dra. Brigitte Reyes Palmero</p>
+            <img src="./assets/images/doctora/003.jpeg" alt="Dra. Brigitte Reyes Palmero"
+              class="w-full h-full object-cover">
           </div>
         </div>
 
@@ -229,7 +203,7 @@
               </div>
               <div>
                 <h3 class="font-title font-semibold text-aurum-purple-dark text-sm">Licenciatura</h3>
-                <p class="text-xs text-gray-500 mt-0.5">Médico Cirujano – Universidad Villa Rica (2008‑2014)</p>
+                <p class="text-xs text-gray-500 mt-0.5">Médico Cirujano – Universidad Villa Rica, UNAM (2008‑2014)</p>
                 <span
                   class="inline-block mt-1 text-xs bg-purple-100 text-aurum-purple px-2 py-0.5 rounded-full font-medium">Cédula
                   10135560</span>
@@ -243,9 +217,8 @@
                 <i class="fas fa-stethoscope text-aurum-purple"></i>
               </div>
               <div>
-                <h3 class="font-title font-semibold text-aurum-purple-dark text-sm">Especialidad Previa</h3>
-                <p class="text-xs text-gray-500 mt-0.5">Imagenología diagnóstica y terapéutica – UMAE IMSS, León
-                  (2017‑2021)</p>
+                <h3 class="font-title font-semibold text-aurum-purple-dark text-sm">Especialidad</h3>
+                <p class="text-xs text-gray-500 mt-0.5">Imagenología diagnóstica y terapéutica – UMAE IMSS, León, Universidad de Guanajuato (2017‑2021)</p>
                 <span
                   class="inline-block mt-1 text-xs bg-purple-100 text-aurum-purple px-2 py-0.5 rounded-full font-medium">Cédula
                   12695356</span>
@@ -261,8 +234,7 @@
               <div>
                 <h3 class="font-title font-semibold text-aurum-purple-dark text-sm">Alta Especialidad – Radiología
                   Oncológica</h3>
-                <p class="text-xs text-gray-500 mt-0.5">Instituto Nacional de Cancerología (INCan), Tlalpan (2021‑2022)
-                </p>
+                <p class="text-xs text-gray-500 mt-0.5">Instituto Nacional de Cancerología (INCan), Cd. de México, UNAM (2021‑2022)</p>
               </div>
             </div>
 
@@ -274,8 +246,7 @@
               </div>
               <div>
                 <h3 class="font-title font-semibold text-aurum-purple-dark text-sm">Alta Especialidad – Neuroimagen</h3>
-                <p class="text-xs text-gray-500 mt-0.5">Diagnóstico por imagen en Neurología – INCMNSZ, Ciudad de México
-                  (2022‑2023)</p>
+                <p class="text-xs text-gray-500 mt-0.5">Diagnóstico por imagen en Neurología – INCMNSZ, Ciudad de México, UNAM (2022‑2023)</p>
               </div>
             </div>
           </div>
@@ -304,7 +275,8 @@
             </div>
             <div>
               <h3 class="font-title font-semibold text-aurum-purple-dark text-sm">Dirección</h3>
-              <p class="text-xs text-gray-500 mt-0.5">Av. Ejército Mexicano esq. Juan Malpica 2813, Luis Echeverría, 94298 Ver.</p>
+              <p class="text-xs text-gray-500 mt-0.5">Av. Ejército Mexicano esq. Juan Malpica 2813, Luis Echeverría,
+                94298 Ver.</p>
               <p class="text-xs text-gray-400">Centro de Especialidades Médicas Boka</p>
             </div>
           </div>
@@ -355,7 +327,8 @@
           <iframe
             src="https://maps.google.com/maps?q=Dra.+Brigitte+Reyes+Palmero+Radi%C3%B3logo+Ej%C3%A9rcito+Mexicano+2813+Veracruz&t=&z=16&ie=UTF8&iwloc=B&output=embed"
             width="100%" height="100%" style="border:0; min-height:380px;" allowfullscreen="" loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade" title="Consultorio Dra. Brigitte Reyes Palmero – BOKA Centro de Especialidades Médicas">
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Consultorio Dra. Brigitte Reyes Palmero – BOKA Centro de Especialidades Médicas">
           </iframe>
         </div>
       </div>
@@ -371,75 +344,138 @@
       <p class="text-gray-500 text-sm">Un vistazo a nuestras instalaciones y atención de primer nivel</p>
     </div>
 
-    <style>
-      @keyframes marquee {
-        0% { transform: translateX(0); }
-        100% { transform: translateX(-50%); }
-      }
-      .animate-marquee {
-        display: flex;
-        width: max-content;
-        animation: marquee 30s linear infinite;
-      }
-      .animate-marquee:hover {
-        animation-play-state: paused;
-      }
-    </style>
 
-    <div class="relative w-full overflow-hidden">
+
+    <div class="relative w-full py-6 -my-6">
       <!-- Gradient masks for smooth edges -->
-      <div class="absolute top-0 left-0 w-16 md:w-32 h-full bg-gradient-to-r from-white to-transparent z-10 pointer-events-none"></div>
-      <div class="absolute top-0 right-0 w-16 md:w-32 h-full bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"></div>
-      
+      <div
+        class="absolute top-0 left-0 w-16 md:w-32 h-full bg-gradient-to-r from-white to-transparent z-10 pointer-events-none">
+      </div>
+      <div
+        class="absolute top-0 right-0 w-16 md:w-32 h-full bg-gradient-to-l from-white to-transparent z-10 pointer-events-none">
+      </div>
+
       <!-- Scrolling Track -->
-      <div class="animate-marquee gap-6 px-3">
+      <div class="animate-marquee hover:[animation-play-state:paused] gap-6 px-3">
         <!-- 
           El bloque original de fotos se repite 2 veces para lograr el scroll infinito perfecto.
           Solo cambia el src de las imágenes. 
         -->
-        
+
         <!-- ================= BLOQUE 1 ================= -->
         <!-- Foto 1 -->
-        <div class="w-72 h-48 md:w-80 md:h-56 bg-gradient-to-br from-aurum-bg to-pink-50 rounded-2xl flex-shrink-0 flex flex-col items-center justify-center border border-gray-200 shadow-sm overflow-hidden group">
-          <i class="fas fa-user-md text-5xl text-aurum-purple/30 group-hover:scale-110 transition-transform duration-500"></i>
-          <!-- <img src="./assets/images/doctora/foto1.jpg" alt="Dra. Brigitte" class="w-full h-full object-cover"> -->
+        <div
+          class="w-72 h-48 md:w-80 md:h-56 bg-gradient-to-br from-aurum-bg to-pink-50 rounded-2xl flex-shrink-0 flex flex-col items-center justify-center border border-gray-200 shadow-sm overflow-hidden group hover:scale-[1.15] hover:shadow-2xl hover:z-20 transition-all duration-500 cursor-pointer relative">
+          <img src="./assets/images/clinica/4584dafb-2083-4a2a-9cc9-db55b280a349.jpeg"
+            alt="Instalaciones de la Clínica Aurum"
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
         </div>
-        <!-- Foto 2 -->
-        <div class="w-72 h-48 md:w-80 md:h-56 bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl flex-shrink-0 flex flex-col items-center justify-center border border-gray-200 shadow-sm overflow-hidden group">
-          <i class="fas fa-microscope text-5xl text-aurum-pink/30 group-hover:scale-110 transition-transform duration-500"></i>
-          <!-- <img src="./assets/images/doctora/foto2.jpg" alt="Dra. Brigitte trabajando" class="w-full h-full object-cover"> -->
-        </div>
+
         <!-- Foto 3 -->
-        <div class="w-72 h-48 md:w-80 md:h-56 bg-gradient-to-br from-aurum-bg to-pink-50 rounded-2xl flex-shrink-0 flex flex-col items-center justify-center border border-gray-200 shadow-sm overflow-hidden group">
-          <i class="fas fa-clinic-medical text-5xl text-aurum-purple/30 group-hover:scale-110 transition-transform duration-500"></i>
-          <!-- <img src="./assets/images/doctora/foto3.jpg" alt="Consultorio" class="w-full h-full object-cover"> -->
+        <div
+          class="w-72 h-48 md:w-80 md:h-56 bg-gradient-to-br from-aurum-bg to-pink-50 rounded-2xl flex-shrink-0 flex flex-col items-center justify-center border border-gray-200 shadow-sm overflow-hidden group hover:scale-[1.15] hover:shadow-2xl hover:z-20 transition-all duration-500 cursor-pointer relative">
+          <img src="./assets/images/clinica/IMG_3313.jpeg" alt="Clínica Aurum"
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
         </div>
         <!-- Foto 4 -->
-        <div class="w-72 h-48 md:w-80 md:h-56 bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl flex-shrink-0 flex flex-col items-center justify-center border border-gray-200 shadow-sm overflow-hidden group">
-          <i class="fas fa-x-ray text-5xl text-aurum-pink/30 group-hover:scale-110 transition-transform duration-500"></i>
-          <!-- <img src="./assets/images/doctora/foto4.jpg" alt="Equipo Médico" class="w-full h-full object-cover"> -->
+        <div
+          class="w-72 h-48 md:w-80 md:h-56 bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl flex-shrink-0 flex flex-col items-center justify-center border border-gray-200 shadow-sm overflow-hidden group hover:scale-[1.15] hover:shadow-2xl hover:z-20 transition-all duration-500 cursor-pointer relative">
+          <img src="./assets/images/clinica/IMG_3318.jpeg" alt="Clínica Aurum"
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+        </div>
+        <!-- Foto 5 -->
+        <div
+          class="w-72 h-48 md:w-80 md:h-56 bg-gradient-to-br from-aurum-bg to-pink-50 rounded-2xl flex-shrink-0 flex flex-col items-center justify-center border border-gray-200 shadow-sm overflow-hidden group hover:scale-[1.15] hover:shadow-2xl hover:z-20 transition-all duration-500 cursor-pointer relative">
+          <img src="./assets/images/clinica/IMG_3364.jpeg" alt="Instalaciones de la Clínica Aurum"
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+        </div>
+        <!-- Foto 6 -->
+        <div
+          class="w-72 h-48 md:w-80 md:h-56 bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl flex-shrink-0 flex flex-col items-center justify-center border border-gray-200 shadow-sm overflow-hidden group hover:scale-[1.15] hover:shadow-2xl hover:z-20 transition-all duration-500 cursor-pointer relative">
+          <img src="./assets/images/clinica/IMG_3365.jpeg" alt="Consultorio Dra. Brigitte"
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+        </div>
+        <!-- Foto 7 -->
+        <div
+          class="w-72 h-48 md:w-80 md:h-56 bg-gradient-to-br from-aurum-bg to-pink-50 rounded-2xl flex-shrink-0 flex flex-col items-center justify-center border border-gray-200 shadow-sm overflow-hidden group hover:scale-[1.15] hover:shadow-2xl hover:z-20 transition-all duration-500 cursor-pointer relative">
+          <img src="./assets/images/clinica/IMG_3366.jpeg" alt="Equipo Médico"
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+        </div>
+        <!-- Foto 8 -->
+        <div
+          class="w-72 h-48 md:w-80 md:h-56 bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl flex-shrink-0 flex flex-col items-center justify-center border border-gray-200 shadow-sm overflow-hidden group hover:scale-[1.15] hover:shadow-2xl hover:z-20 transition-all duration-500 cursor-pointer relative">
+          <img src="./assets/images/clinica/IMG_3367.jpeg" alt="Centro de Imagen Oncológica"
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+        </div>
+        <!-- Foto 9 -->
+        <div
+          class="w-72 h-48 md:w-80 md:h-56 bg-gradient-to-br from-aurum-bg to-pink-50 rounded-2xl flex-shrink-0 flex flex-col items-center justify-center border border-gray-200 shadow-sm overflow-hidden group hover:scale-[1.15] hover:shadow-2xl hover:z-20 transition-all duration-500 cursor-pointer relative">
+          <img src="./assets/images/clinica/IMG_3368.jpeg" alt="Clínica Aurum"
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+        </div>
+        <!-- Foto 10 -->
+        <div
+          class="w-72 h-48 md:w-80 md:h-56 bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl flex-shrink-0 flex flex-col items-center justify-center border border-gray-200 shadow-sm overflow-hidden group hover:scale-[1.15] hover:shadow-2xl hover:z-20 transition-all duration-500 cursor-pointer relative">
+          <img src="./assets/images/clinica/eafb9534-35d7-474e-bc49-7358252d7b33.jpeg" alt="Clínica Aurum"
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
         </div>
 
         <!-- ================= BLOQUE 2 (Clon para scroll infinito) ================= -->
         <!-- Foto 1 -->
-        <div class="w-72 h-48 md:w-80 md:h-56 bg-gradient-to-br from-aurum-bg to-pink-50 rounded-2xl flex-shrink-0 flex flex-col items-center justify-center border border-gray-200 shadow-sm overflow-hidden group">
-          <i class="fas fa-user-md text-5xl text-aurum-purple/30 group-hover:scale-110 transition-transform duration-500"></i>
-          <!-- <img src="./assets/images/doctora/foto1.jpg" alt="Dra. Brigitte" class="w-full h-full object-cover"> -->
+        <div
+          class="w-72 h-48 md:w-80 md:h-56 bg-gradient-to-br from-aurum-bg to-pink-50 rounded-2xl flex-shrink-0 flex flex-col items-center justify-center border border-gray-200 shadow-sm overflow-hidden group hover:scale-[1.15] hover:shadow-2xl hover:z-20 transition-all duration-500 cursor-pointer relative">
+          <img src="./assets/images/clinica/4584dafb-2083-4a2a-9cc9-db55b280a349.jpeg"
+            alt="Instalaciones de la Clínica Aurum"
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
         </div>
-        <!-- Foto 2 -->
-        <div class="w-72 h-48 md:w-80 md:h-56 bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl flex-shrink-0 flex flex-col items-center justify-center border border-gray-200 shadow-sm overflow-hidden group">
-          <i class="fas fa-microscope text-5xl text-aurum-pink/30 group-hover:scale-110 transition-transform duration-500"></i>
-          <!-- <img src="./assets/images/doctora/foto2.jpg" alt="Dra. Brigitte trabajando" class="w-full h-full object-cover"> -->
-        </div>
+
         <!-- Foto 3 -->
-        <div class="w-72 h-48 md:w-80 md:h-56 bg-gradient-to-br from-aurum-bg to-pink-50 rounded-2xl flex-shrink-0 flex flex-col items-center justify-center border border-gray-200 shadow-sm overflow-hidden group">
-          <i class="fas fa-clinic-medical text-5xl text-aurum-purple/30 group-hover:scale-110 transition-transform duration-500"></i>
-          <!-- <img src="./assets/images/doctora/foto3.jpg" alt="Consultorio" class="w-full h-full object-cover"> -->
+        <div
+          class="w-72 h-48 md:w-80 md:h-56 bg-gradient-to-br from-aurum-bg to-pink-50 rounded-2xl flex-shrink-0 flex flex-col items-center justify-center border border-gray-200 shadow-sm overflow-hidden group hover:scale-[1.15] hover:shadow-2xl hover:z-20 transition-all duration-500 cursor-pointer relative">
+          <img src="./assets/images/clinica/IMG_3313.jpeg" alt="Clínica Aurum"
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
         </div>
         <!-- Foto 4 -->
-        <div class="w-72 h-48 md:w-80 md:h-56 bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl flex-shrink-0 flex flex-col items-center justify-center border border-gray-200 shadow-sm overflow-hidden group">
-          <i class="fas fa-x-ray text-5xl text-aurum-pink/30 group-hover:scale-110 transition-transform duration-500"></i>
-          <!-- <img src="./assets/images/doctora/foto4.jpg" alt="Equipo Médico" class="w-full h-full object-cover"> -->
+        <div
+          class="w-72 h-48 md:w-80 md:h-56 bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl flex-shrink-0 flex flex-col items-center justify-center border border-gray-200 shadow-sm overflow-hidden group hover:scale-[1.15] hover:shadow-2xl hover:z-20 transition-all duration-500 cursor-pointer relative">
+          <img src="./assets/images/clinica/IMG_3318.jpeg" alt="Clínica Aurum"
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+        </div>
+        <!-- Foto 5 -->
+        <div
+          class="w-72 h-48 md:w-80 md:h-56 bg-gradient-to-br from-aurum-bg to-pink-50 rounded-2xl flex-shrink-0 flex flex-col items-center justify-center border border-gray-200 shadow-sm overflow-hidden group hover:scale-[1.15] hover:shadow-2xl hover:z-20 transition-all duration-500 cursor-pointer relative">
+          <img src="./assets/images/clinica/IMG_3364.jpeg" alt="Instalaciones de la Clínica Aurum"
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+        </div>
+        <!-- Foto 6 -->
+        <div
+          class="w-72 h-48 md:w-80 md:h-56 bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl flex-shrink-0 flex flex-col items-center justify-center border border-gray-200 shadow-sm overflow-hidden group hover:scale-[1.15] hover:shadow-2xl hover:z-20 transition-all duration-500 cursor-pointer relative">
+          <img src="./assets/images/clinica/IMG_3365.jpeg" alt="Consultorio Dra. Brigitte"
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+        </div>
+        <!-- Foto 7 -->
+        <div
+          class="w-72 h-48 md:w-80 md:h-56 bg-gradient-to-br from-aurum-bg to-pink-50 rounded-2xl flex-shrink-0 flex flex-col items-center justify-center border border-gray-200 shadow-sm overflow-hidden group hover:scale-[1.15] hover:shadow-2xl hover:z-20 transition-all duration-500 cursor-pointer relative">
+          <img src="./assets/images/clinica/IMG_3366.jpeg" alt="Equipo Médico"
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+        </div>
+        <!-- Foto 8 -->
+        <div
+          class="w-72 h-48 md:w-80 md:h-56 bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl flex-shrink-0 flex flex-col items-center justify-center border border-gray-200 shadow-sm overflow-hidden group hover:scale-[1.15] hover:shadow-2xl hover:z-20 transition-all duration-500 cursor-pointer relative">
+          <img src="./assets/images/clinica/IMG_3367.jpeg" alt="Centro de Imagen Oncológica"
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+        </div>
+        <!-- Foto 9 -->
+        <div
+          class="w-72 h-48 md:w-80 md:h-56 bg-gradient-to-br from-aurum-bg to-pink-50 rounded-2xl flex-shrink-0 flex flex-col items-center justify-center border border-gray-200 shadow-sm overflow-hidden group hover:scale-[1.15] hover:shadow-2xl hover:z-20 transition-all duration-500 cursor-pointer relative">
+          <img src="./assets/images/clinica/IMG_3368.jpeg" alt="Clínica Aurum"
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+        </div>
+        <!-- Foto 10 -->
+        <div
+          class="w-72 h-48 md:w-80 md:h-56 bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl flex-shrink-0 flex flex-col items-center justify-center border border-gray-200 shadow-sm overflow-hidden group hover:scale-[1.15] hover:shadow-2xl hover:z-20 transition-all duration-500 cursor-pointer relative">
+          <img src="./assets/images/clinica/eafb9534-35d7-474e-bc49-7358252d7b33.jpeg" alt="Clínica Aurum"
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
         </div>
 
       </div>
@@ -551,14 +587,16 @@
             </div>
           </div>
           <div>
-            <label class="block font-title text-sm font-semibold text-aurum-purple-dark mb-1.5">Correo Electrónico</label>
+            <label class="block font-title text-sm font-semibold text-aurum-purple-dark mb-1.5">Correo
+              Electrónico</label>
             <input type="email" id="form-correo" name="correo" placeholder="Tu correo electrónico" required
               class="w-full px-4 py-3 border border-gray-200 rounded-xl bg-aurum-bg text-sm focus:outline-none focus:ring-2 focus:ring-aurum-purple/20 focus:border-aurum-purple transition-all">
           </div>
           <div class="grid grid-cols-2 gap-4">
             <div>
               <label class="block font-title text-sm font-semibold text-aurum-purple-dark mb-1.5">Fecha</label>
-              <input type="text" id="form-fecha" name="fecha_cita" placeholder="Selecciona una fecha" required
+              <input type="text" id="form-fecha" name="fecha_cita" placeholder="Selecciona una fecha" autocomplete="off"
+                required
                 class="w-full px-4 py-3 border border-gray-200 rounded-xl bg-aurum-bg text-sm focus:outline-none focus:ring-2 focus:ring-aurum-purple/20 focus:border-aurum-purple transition-all cursor-pointer">
             </div>
             <div>
@@ -574,7 +612,7 @@
               requerido</label>
             <select id="form-estudio" name="estudio" required
               class="w-full px-4 py-3 border border-gray-200 rounded-xl bg-aurum-bg text-sm focus:outline-none focus:ring-2 focus:ring-aurum-purple/20 focus:border-aurum-purple transition-all cursor-pointer disabled:bg-gray-100">
-              <option value="">Cargando estudios...</option>
+              <option value="">Selecciona un estudio</option>
             </select>
           </div>
           <button type="submit" id="form-submit-button"
@@ -585,7 +623,8 @@
         <!-- Mensaje de éxito -->
         <div id="form-success-message" class="text-center" style="display: none;">
           <h3 class="font-title text-xl font-bold text-green-600">¡Solicitud Enviada!</h3>
-          <p class="text-gray-600 mt-2">Gracias por tu solicitud. Nos pondremos en contacto contigo a la brevedad para confirmar los detalles de tu cita.</p>
+          <p class="text-gray-600 mt-2">Gracias por tu solicitud. Nos pondremos en contacto contigo a la brevedad para
+            confirmar los detalles de tu cita.</p>
         </div>
       </div>
     </div>
@@ -603,21 +642,30 @@
 
     <div class="relative max-w-7xl mx-auto px-6">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 mb-16">
-        
+
         <!-- Bloque 1: Brand (Span 4) -->
         <div class="lg:col-span-4">
-          <img src="./assets/images/logos/logo-principal.svg" alt="Aurum Footer Logo" class="h-12 w-auto mb-6 filter brightness-0 invert opacity-90" />
+          <img src="./assets/images/logos/logo-principal.svg" alt="Aurum Footer Logo"
+            class="h-12 w-auto mb-6 filter brightness-0 invert opacity-90" />
           <p class="text-purple-200 text-sm leading-relaxed mb-8 pr-4">
-            Somos el centro especializado en imagenología oncológica, comprometidos con brindarte certeza diagnóstica, tecnología de última generación y el trato humano que mereces.
+            Somos el centro especializado en imagenología oncológica, comprometidos con brindarte certeza diagnóstica,
+            tecnología de última generación y el trato humano que mereces.
           </p>
           <div class="flex gap-4">
-            <a href="https://wa.me/522295207459?text=Hola%2C%20me%20gustar%C3%ADa%20agendar%20una%20cita" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-aurum-pink hover:border-aurum-pink transition-all duration-300 transform hover:-translate-y-1 shadow-lg" aria-label="WhatsApp">
+            <a href="https://wa.me/522295207459?text=Hola%2C%20me%20gustar%C3%ADa%20agendar%20una%20cita"
+              target="_blank" rel="noopener noreferrer"
+              class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-aurum-pink hover:border-aurum-pink transition-all duration-300 transform hover:-translate-y-1 shadow-lg"
+              aria-label="WhatsApp">
               <i class="fab fa-whatsapp text-sm"></i>
             </a>
-            <a href="https://www.instagram.com/radioonco/" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-aurum-pink hover:border-aurum-pink transition-all duration-300 transform hover:-translate-y-1 shadow-lg" aria-label="Instagram">
+            <a href="https://www.instagram.com/radioonco/" target="_blank" rel="noopener noreferrer"
+              class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-aurum-pink hover:border-aurum-pink transition-all duration-300 transform hover:-translate-y-1 shadow-lg"
+              aria-label="Instagram">
               <i class="fab fa-instagram text-sm"></i>
             </a>
-            <a href="https://www.facebook.com/radiologaOncologa" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-aurum-pink hover:border-aurum-pink transition-all duration-300 transform hover:-translate-y-1 shadow-lg" aria-label="Facebook">
+            <a href="https://www.facebook.com/radiologaOncologa" target="_blank" rel="noopener noreferrer"
+              class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-aurum-pink hover:border-aurum-pink transition-all duration-300 transform hover:-translate-y-1 shadow-lg"
+              aria-label="Facebook">
               <i class="fab fa-facebook-f text-sm"></i>
             </a>
           </div>
@@ -631,23 +679,34 @@
               <span class="absolute -bottom-2 left-0 w-1/2 h-0.5 bg-aurum-pink rounded"></span>
             </h4>
             <ul class="space-y-3">
-              <li><a href="#inicio" class="text-purple-200 hover:text-white hover:translate-x-1 inline-block transition-transform duration-300 text-sm">Inicio</a></li>
-              <li><a href="#nosotros" class="text-purple-200 hover:text-white hover:translate-x-1 inline-block transition-transform duration-300 text-sm">Nuestra Clínica</a></li>
-              <li><a href="#servicios" class="text-purple-200 hover:text-white hover:translate-x-1 inline-block transition-transform duration-300 text-sm">Nuestros Estudios</a></li>
-              <li><a href="#citas" class="text-purple-200 hover:text-white hover:translate-x-1 inline-block transition-transform duration-300 text-sm">Agendar Cita</a></li>
+              <li><a href="#inicio"
+                  class="text-purple-200 hover:text-white hover:translate-x-1 inline-block transition-transform duration-300 text-sm">Inicio</a>
+              </li>
+              <li><a href="#nosotros"
+                  class="text-purple-200 hover:text-white hover:translate-x-1 inline-block transition-transform duration-300 text-sm">Nuestra
+                  Clínica</a></li>
+              <li><a href="#servicios"
+                  class="text-purple-200 hover:text-white hover:translate-x-1 inline-block transition-transform duration-300 text-sm">Nuestros
+                  Estudios</a></li>
+              <li><a href="#citas"
+                  class="text-purple-200 hover:text-white hover:translate-x-1 inline-block transition-transform duration-300 text-sm">Agendar
+                  Cita</a></li>
             </ul>
           </div>
         </div>
 
         <!-- Bloque 3: Contacto (Span 4) -->
         <div class="lg:col-span-4">
-          <div class="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm relative overflow-hidden group">
-            <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-aurum-pink/20 to-transparent rounded-bl-full pointer-events-none opacity-50 group-hover:opacity-100 transition-opacity duration-500"></div>
-            
+          <div
+            class="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm relative overflow-hidden group">
+            <div
+              class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-aurum-pink/20 to-transparent rounded-bl-full pointer-events-none opacity-50 group-hover:opacity-100 transition-opacity duration-500">
+            </div>
+
             <h4 class="font-title font-bold text-lg mb-5 text-white flex items-center gap-2">
               <i class="fas fa-headset text-aurum-pink"></i> Contáctanos
             </h4>
-            
+
             <div class="space-y-4">
               <div class="flex items-start gap-3">
                 <div class="mt-1 w-6 text-center text-aurum-pink"><i class="far fa-clock"></i></div>
@@ -656,15 +715,17 @@
                   <p class="text-purple-200 text-sm">Sáb y Dom: Cerrado</p>
                 </div>
               </div>
-              
+
               <div class="flex items-center gap-3">
                 <div class="w-6 text-center text-aurum-pink"><i class="far fa-envelope"></i></div>
-                <a href="mailto:reyesbri474@gmail.com" class="text-purple-200 hover:text-white text-sm transition-colors break-all">reyesbri474@gmail.com</a>
+                <a href="mailto:reyesbri474@gmail.com"
+                  class="text-purple-200 hover:text-white text-sm transition-colors break-all">reyesbri474@gmail.com</a>
               </div>
 
               <div class="flex items-center gap-3">
                 <div class="w-6 text-center text-aurum-pink"><i class="fas fa-phone-alt"></i></div>
-                <a href="tel:2295207459" class="text-purple-200 hover:text-white text-sm font-semibold transition-colors">229 520 7459</a>
+                <a href="tel:2295207459"
+                  class="text-purple-200 hover:text-white text-sm font-semibold transition-colors">229 520 7459</a>
               </div>
             </div>
           </div>
@@ -673,10 +734,19 @@
       </div>
 
       <!-- Footer Bottom -->
-      <div class="pt-6 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
-        <p class="text-purple-200/70 text-xs text-center md:text-left">
-          &copy; 2026 AURUM. Centro de Imagen Oncológica. Todos los derechos reservados.
-        </p>
+      <div class="pt-6 border-t border-white/10 flex flex-col lg:flex-row justify-between items-center gap-6">
+        <div class="flex flex-col md:flex-row items-center gap-4 lg:gap-6">
+          <p class="text-purple-200/70 text-xs text-center md:text-left">
+            &copy; 2026 AURUM. Centro de Imagen Oncológica. Todos los derechos reservados.
+          </p>
+          <div class="hidden md:block w-1 h-1 rounded-full bg-white/20"></div>
+          <a href="https://nagualstudio.tech" target="_blank" rel="noopener noreferrer"
+            class="flex items-center gap-2 group cursor-pointer">
+            <span class="text-purple-200/60 text-xs">Patrocinado y desarrollado por NAGUAL TECH STUDIO</span>
+            <img src="./assets/images/logos/NAGUAL.png" alt="Nagual Tech Studio"
+              class="h-20 w-auto opacity-70 group-hover:opacity-100 transition-opacity">
+          </a>
+        </div>
         <div class="flex items-center gap-4 text-purple-200/70 text-xs">
           <a href="#" class="hover:text-white transition-colors">Aviso de privacidad</a>
           <span class="w-1 h-1 rounded-full bg-aurum-pink"></span>
@@ -686,12 +756,15 @@
     </div>
   </footer>
 
-  <!-- ═══════════════════════════════════════════ -->
-  <!-- SCRIPTS                                     -->
-  <!-- ═══════════════════════════════════════════ -->
-  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/es.js"></script>
-  <script type="module" src="/src/public-page.js?v=2"></script>
+
+  <!-- Choices.js -->
+  <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
+
+  <!-- Lógica de Negocio y UI -->
+  <script type="module" src="./src/public-page.js?v=2"></script>
 </body>
 
 </html>
