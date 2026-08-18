@@ -13,13 +13,25 @@ services:
       - api
     restart: unless-stopped
 
+  db:
+    image: mysql:8.0
+    container_name: aurum_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD:-lean}
+      MYSQL_DATABASE: clinicaaurum
+    volumes:
+      - db_data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+
   web:
     build: .
     container_name: aurum_frontend
     env_file:
       - .env
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
+    depends_on:
+      - db
     restart: unless-stopped
 
   api:
@@ -27,6 +39,9 @@ services:
     container_name: aurum_backend
     env_file:
       - ../API/.env
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
+    depends_on:
+      - db
     restart: unless-stopped
+
+volumes:
+  db_data:
