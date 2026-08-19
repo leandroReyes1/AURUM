@@ -275,20 +275,20 @@ document.addEventListener('DOMContentLoaded', async () => {
     filtered.forEach(apt => {
       const tr = document.createElement('tr');
       tr.innerHTML = `
-        <td style="font-weight: 700; color: var(--color-primary-light);">${apt.id}</td>
-        <td>
+        <td data-label="Código" style="font-weight: 700; color: var(--color-primary-light);">${apt.id}</td>
+        <td data-label="Paciente">
           <div style="font-weight: 600;">${apt.nombre_paciente || 'N/A'}</div>
           <div style="font-size: 0.75rem; color: var(--color-text-muted);">${apt.telefono || ''} | ${apt.email || ''}</div>
         </td>
-        <td><span style="font-weight: 500;">${apt.estudio}</span></td>
-        <td>
+        <td data-label="Estudio"><span style="font-weight: 500;">${apt.estudio}</span></td>
+        <td data-label="Fecha y Hora">
           <div style="font-weight: 600;">${formatDateText(apt.fecha_cita)}</div>
           <div style="font-size: 0.75rem; color: var(--color-text-muted);">${formatTime(apt.hora_cita)}</div>
         </td>
-        <td>
+        <td data-label="Estado">
           <span class="status-badge ${apt.estado.toLowerCase()}">${apt.estado}</span>
         </td>
-        <td>
+        <td data-label="Acciones">
           <div class="action-buttons">
             ${apt.estado === 'Pendiente' ? `
               <button class="btn-action confirm" title="Confirmar Cita" data-id="${apt.id}">

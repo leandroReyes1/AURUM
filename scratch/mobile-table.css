@@ -1,0 +1,73 @@
+/* MOBILE TABLE AS CARDS (Added for better UX on phones) */
+@media (max-width: 768px) {
+  .table-container {
+    overflow-x: hidden;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+  }
+  
+  .admin-table, .admin-table tbody, .admin-table tr, .admin-table td {
+    display: block;
+    width: 100%;
+    min-width: 100%;
+  }
+
+  .admin-table thead {
+    display: none;
+  }
+  
+  .admin-table tr {
+    background-color: var(--color-white);
+    border-radius: 12px;
+    margin-bottom: 1rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(74, 21, 75, 0.08);
+    padding: 0.5rem;
+  }
+  
+  .admin-table td {
+    border-bottom: 1px dashed rgba(74, 21, 75, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0.5rem;
+    text-align: right;
+  }
+  
+  .admin-table td:last-child {
+    border-bottom: none;
+    justify-content: center;
+  }
+  
+  .admin-table td::before {
+    content: attr(data-label);
+    font-weight: 700;
+    font-size: 0.8rem;
+    color: var(--color-primary-dark);
+    text-transform: uppercase;
+    margin-right: 1rem;
+    text-align: left;
+  }
+
+  .action-buttons {
+    width: 100%;
+    justify-content: center;
+    gap: 1rem;
+  }
+  
+  .admin-table td > div {
+    text-align: right;
+  }
+
+  .filter-options {
+    flex-direction: column;
+    align-items: stretch !important;
+    width: 100%;
+  }
+
+  .filter-options .choices, .filter-options button {
+    width: 100%;
+  }
+}
