@@ -59,9 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (response.ok) {
         // Guardar el token manualmente en localStorage (evita problemas de bloqueo de cookies en navegadores)
-        if (data.token) {
-          localStorage.setItem('aurum_admin_token', data.token);
-        }
+        // El token ya se maneja automáticamente y de forma segura mediante Cookies HTTP-Only
         // Inicio de sesión exitoso, redirigir al dashboard
         window.location.href = './admin.html';
       } else {

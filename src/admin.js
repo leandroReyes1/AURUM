@@ -5,20 +5,10 @@ const API_AUTH_URL = '/api/auth';
 
 // Validar sesión antes de mostrar la página completa
 async function checkAuth() {
-  const token = localStorage.getItem('aurum_admin_token');
-  
-  if (!token) {
-    window.location.href = './login.html';
-    return;
-  }
-
   try {
     const response = await fetch(`${API_AUTH_URL}/verify`, {
       method: 'GET',
-      headers: {
-        'Authorization': `Bearer ${token}`
-      },
-      credentials: 'include' // Mantiene compatibilidad con cookies si el navegador lo permite
+      credentials: 'include' // Envía automáticamente la cookie HTTP-Only segura
     });
     
     if (!response.ok) {
@@ -831,16 +821,13 @@ document.addEventListener('DOMContentLoaded', async () => {
     btnLogout.addEventListener('click', async (e) => {
       e.preventDefault();
       try {
-        const token = localStorage.getItem('aurum_admin_token');
         await fetch(`${API_AUTH_URL}/logout`, {
           method: 'POST',
-          headers: token ? { 'Authorization': `Bearer ${token}` } : {},
           credentials: 'include'
         });
       } catch (error) {
         console.error('Error al cerrar sesión', error);
       } finally {
-        localStorage.removeItem('aurum_admin_token');
         window.location.href = './login.html';
       }
     });
