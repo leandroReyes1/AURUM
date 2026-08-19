@@ -8,6 +8,20 @@ window.addEventListener('resize', () => {
   document.body.style.paddingBottom = window.innerWidth < 768 ? '64px' : '0';
 });
 
+// Smooth scrolling y evitar que cambie la URL con los anclas (#)
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    const targetId = this.getAttribute('href');
+    if (targetId === '#') return;
+    
+    const targetElement = document.querySelector(targetId);
+    if (targetElement) {
+      e.preventDefault(); // Evita que aparezca #inicio, #nosotros en la URL
+      targetElement.scrollIntoView({ behavior: 'smooth' });
+    }
+  });
+});
+
 // Manejo del formulario de citas con la API
 const appointmentForm = document.getElementById('appointment-form');
 const successMessage = document.getElementById('form-success-message');
