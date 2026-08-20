@@ -43,5 +43,17 @@ services:
       - db
     restart: unless-stopped
 
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: aurum_phpmyadmin
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
+    restart: unless-stopped
+
 volumes:
   db_data:
