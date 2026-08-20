@@ -1,22 +1,16 @@
 /* Estilos específicos para la página de login (usando variables de admin.css) */
-body {
-  margin: 0;
-  padding: 0;
-  background-color: var(--color-bg-main, #f8f9fc);
-  font-family: var(--font-body, 'Inter', system-ui, sans-serif);
+.login-container {
+  width: 100%;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
-}
-
-.login-container {
-  width: 100%;
-  max-width: 450px;
   padding: 2rem;
 }
 
 .login-card {
+  width: 100%;
+  max-width: 450px;
   background-color: var(--color-white, #ffffff);
   border-radius: 12px;
   box-shadow: 0 10px 30px rgba(74, 21, 75, 0.08);
