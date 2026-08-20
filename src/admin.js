@@ -11,6 +11,11 @@ async function checkAuth() {
       credentials: 'include' // Envía automáticamente la cookie HTTP-Only segura
     });
     
+    // Wait for DOM to be ready to avoid null references
+    if (document.readyState === 'loading') {
+      await new Promise(resolve => document.addEventListener('DOMContentLoaded', resolve));
+    }
+
     if (!response.ok) {
       // Mostrar login si la sesión es inválida
       document.getElementById('login-view').style.display = 'flex';
@@ -24,6 +29,9 @@ async function checkAuth() {
     }
   } catch (error) {
     console.error('Error al verificar sesión:', error);
+    if (document.readyState === 'loading') {
+      await new Promise(resolve => document.addEventListener('DOMContentLoaded', resolve));
+    }
     document.getElementById('login-view').style.display = 'flex';
     document.getElementById('admin-view').style.display = 'none';
     document.body.style.opacity = '1';
