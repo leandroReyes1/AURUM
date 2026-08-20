@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Guardar el token manualmente en localStorage (evita problemas de bloqueo de cookies en navegadores)
         // El token ya se maneja automáticamente y de forma segura mediante Cookies HTTP-Only
         // Inicio de sesión exitoso, redirigir al dashboard
-        window.location.href = './admin.html';
+        window.location.href = '/';
       } else {
         // Mostrar error si las credenciales son incorrectas
         errorMessage.textContent = data.error || 'Error al iniciar sesión';

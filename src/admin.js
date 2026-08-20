@@ -12,15 +12,21 @@ async function checkAuth() {
     });
     
     if (!response.ok) {
-      // Redirigir al login si la sesión es inválida o expiró
-      window.location.href = './login.html';
+      // Mostrar login si la sesión es inválida
+      document.getElementById('login-view').style.display = 'flex';
+      document.getElementById('admin-view').style.display = 'none';
+      document.body.style.opacity = '1';
     } else {
-      // Sesión válida, mostrar la página
+      // Sesión válida, mostrar la página de admin
+      document.getElementById('login-view').style.display = 'none';
+      document.getElementById('admin-view').style.display = 'flex';
       document.body.style.opacity = '1';
     }
   } catch (error) {
     console.error('Error al verificar sesión:', error);
-    window.location.href = './login.html';
+    document.getElementById('login-view').style.display = 'flex';
+    document.getElementById('admin-view').style.display = 'none';
+    document.body.style.opacity = '1';
   }
 }
 checkAuth();
@@ -828,7 +834,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       } catch (error) {
         console.error('Error al cerrar sesión', error);
       } finally {
-        window.location.href = './login.html';
+        window.location.href = '/';
       }
     });
   }
