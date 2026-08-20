@@ -1,5 +1,5 @@
 // Detectar automáticamente si estamos en Live Server o en el servidor Node
-const API_BASE_URL = window.location.port === '4000' ? '/api' : 'http://localhost:4000/api';
+const API_BASE_URL = '/api';
 
 export class AppointmentRepository {
   constructor() {

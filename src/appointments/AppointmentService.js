@@ -15,7 +15,7 @@ export class AppointmentService {
   // Cargar lista de estudios desde la API
   async fetchEstudios() {
     try {
-      const API_BASE_URL = window.location.port === '4000' ? '/api' : 'http://localhost:4000/api';
+      const API_BASE_URL = '/api';
       const response = await fetch(`${API_BASE_URL}/estudios`);
       if (response.ok) {
         return await response.json();
