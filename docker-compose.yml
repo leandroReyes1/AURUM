@@ -39,7 +39,7 @@ services:
     env_file:
       - ../API/.env
     environment:
-      - DATABASE_URL=mysql://root:lean@db:3306/clinicaaurum
+      - DATABASE_URL=mysql://root:lean@db:3306/clinicaaurum?allowPublicKeyRetrieval=true
     depends_on:
       - db
     restart: unless-stopped
