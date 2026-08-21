@@ -1,5 +1,8 @@
 import nodemailer from 'nodemailer';
+import dns from 'dns';
 
+// Forzar la resolución de DNS a IPv4 primero para evitar que Docker bloquee los correos
+dns.setDefaultResultOrder('ipv4first');
 // Configuración del transporter usando las credenciales del .env
 const transporter = nodemailer.createTransport({
   service: 'gmail',
