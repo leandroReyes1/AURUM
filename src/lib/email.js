@@ -36,6 +36,7 @@ export const sendAppointmentEmail = async (cita, tipo = 'Confirmada') => {
   const htmlBody = `
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden;">
       <div style="background-color: #4A154B; color: white; padding: 20px; text-align: center;">
+        <img src="https://admin.radioonco.com.mx/assets/images/logos/logo01_round.png" alt="Logo Aurum" style="height: 60px; margin-bottom: 15px; border-radius: 50%;">
         <h2 style="margin: 0;">${tipo === 'Cancelada' ? 'Cancelación de Cita Médica' : tipo === 'Reagendada' ? 'Actualización de Cita Médica' : 'Confirmación de Cita Médica'}</h2>
         <p style="margin: 5px 0 0 0; font-size: 14px;">Aurum Centro de Imagen Oncológica y Diagnóstico</p>
       </div>
