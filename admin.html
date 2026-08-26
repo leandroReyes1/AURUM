@@ -155,6 +155,15 @@
           </svg>
           <span>Historial Clínico</span>
         </button>
+        <button class="menu-item" data-tab="manual-tab">
+          <svg class="menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+            <line x1="12" y1="17" x2="12.01" y2="17"></line>
+          </svg>
+          <span>Manual de Usuario</span>
+        </button>
       </nav>
 
       <div class="sidebar-footer" style="display: flex; flex-direction: column; gap: 0.5rem;">
@@ -398,6 +407,248 @@
           </table>
           <div id="historial-no-data" class="no-data-message" style="display: none;">
             <p>No se encontraron registros en el historial con estos filtros.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Panel de Pestaña: Manual de Usuario -->
+      <section id="manual-tab" class="tab-pane" style="display: none; padding-top: 1rem;">
+        <div class="panel-card" style="padding: 2rem;">
+          <h2 class="section-title" style="margin-bottom: 0.5rem; font-size: 1.5rem;">MANUAL DE USO</h2>
+          <h3 style="color: var(--color-aurum-purple); font-weight: 600; margin-bottom: 2rem;">AURUM Centro de Imagen Oncológica y Diagnóstico</h3>
+          
+          <p style="margin-bottom: 2rem; color: #4a5568; line-height: 1.6;">Hola te damos la bienvenida al Sistema de Administración de AURUM Centro de Imagen Oncológica y Diagnóstico. Este manual te guiará paso a paso sobre cómo usar tu nueva plataforma para gestionar las citas y los pacientes de la clínica.</p>
+
+          <!-- Sección 1 -->
+          <div style="margin-bottom: 3rem;">
+            <h4 style="font-size: 1.25rem; font-weight: 600; color: var(--color-aurum-purple-dark); margin-bottom: 1rem; border-bottom: 2px solid var(--color-aurum-pink-light); padding-bottom: 0.5rem;">1. Acceso al Sistema (Inicio de Sesión)</h4>
+            <p style="margin-bottom: 1rem; color: #4a5568;">Para entrar a tu panel de control, sigue estos pasos:</p>
+            <ul style="list-style-type: disc; padding-left: 1.5rem; margin-bottom: 1.5rem; color: #4a5568; line-height: 1.6;">
+              <li>Ingresa a la página de administración desde tu navegador (por ejemplo, desde el sitio principal haciendo clic en tu acceso privado o yendo a la URL del administrador).</li>
+              <li>Verás una pantalla de "Bienvenido de nuevo".</li>
+              <li>Escribe tu Correo Electrónico y tu Contraseña. (Si necesitas ver la contraseña que estás escribiendo, haz clic en el icono del "ojito" a la derecha).</li>
+              <li>Haz clic en el botón <strong>Ingresar</strong>.</li>
+            </ul>
+            <div style="background-color: var(--color-bg-light); border-left: 4px solid var(--color-aurum-pink); padding: 1rem; border-radius: 4px; margin-bottom: 1.5rem; font-size: 0.9rem; color: #4a5568;">
+              <strong>Nota:</strong> Si alguna vez olvidas tu contraseña, puedes hacer clic en la opción "¿Olvidaste tu contraseña?" debajo del botón de ingresar. El sistema te pedirá tu correo para enviarte un enlace donde podrás crear una nueva.
+            </div>
+            
+            <!-- Placeholder for Image -->
+            <div style="background-color: #f7fafc; border: 2px dashed #cbd5e0; border-radius: 8px; padding: 3rem; text-align: center; color: #718096; font-weight: 500; margin-bottom: 1.5rem;">
+              [Aquí va la imagen de: Inicio de Sesión]
+            </div>
+          </div>
+
+          <!-- Sección 2 -->
+          <div style="margin-bottom: 3rem;">
+            <h4 style="font-size: 1.25rem; font-weight: 600; color: var(--color-aurum-purple-dark); margin-bottom: 1rem; border-bottom: 2px solid var(--color-aurum-pink-light); padding-bottom: 0.5rem;">2. Gestión de Citas (Tu pantalla principal)</h4>
+            <p style="margin-bottom: 1rem; color: #4a5568; line-height: 1.6;">Una vez que entres, la primera pantalla que verás es la de Gestión de Citas. Aquí es donde harás la mayor parte de tu trabajo.</p>
+            
+            <h5 style="font-weight: 600; color: var(--color-text-main); margin-bottom: 0.5rem;">¿Qué puedes ver aquí?</h5>
+            <p style="margin-bottom: 0.5rem; color: #4a5568;">En la parte de arriba verás 4 tarjetas con colores que te dan un resumen rápido de tu día:</p>
+            <ul style="list-style-type: disc; padding-left: 1.5rem; margin-bottom: 1.5rem; color: #4a5568; line-height: 1.6;">
+              <li><strong>Citas Registradas:</strong> El total de todas las citas.</li>
+              <li><strong>Pendientes:</strong> Citas nuevas que aún debes confirmar.</li>
+              <li><strong>Confirmadas:</strong> Citas que ya están agendadas y listas.</li>
+              <li><strong>Tasa de Confirmación:</strong> El porcentaje de éxito de tus citas.</li>
+            </ul>
+            <div style="background-color: var(--color-bg-light); border-left: 4px solid var(--color-aurum-pink); padding: 1rem; border-radius: 4px; margin-bottom: 1.5rem; font-size: 0.9rem; color: #4a5568;">
+              <strong>Nota:</strong> Si haces clic en estas tarjetas, la tabla de abajo se filtrará automáticamente (por ejemplo, al hacer clic en "Pendientes", solo verás las citas que faltan por confirmar).
+            </div>
+            
+            <!-- Placeholder for Image -->
+            <div style="background-color: #f7fafc; border: 2px dashed #cbd5e0; border-radius: 8px; padding: 3rem; text-align: center; color: #718096; font-weight: 500; margin-bottom: 1.5rem;">
+              [Aquí va la imagen de: Tarjetas de Resumen]
+            </div>
+
+            <h5 style="font-weight: 600; color: var(--color-text-main); margin-bottom: 0.5rem;">Buscar y Filtrar</h5>
+            <ul style="list-style-type: disc; padding-left: 1.5rem; margin-bottom: 1.5rem; color: #4a5568; line-height: 1.6;">
+              <li><strong>Buscador:</strong> Hay una barra de búsqueda donde puedes escribir el nombre de un paciente, su teléfono o correo para encontrar su cita rápidamente.</li>
+              <li><strong>Filtros:</strong> También puedes usar los menús desplegables para ver solo citas de un estudio en específico (ej. solo Ultrasonidos) o por estado (ej. solo Confirmadas).</li>
+            </ul>
+
+            <!-- Placeholder for Image -->
+            <div style="background-color: #f7fafc; border: 2px dashed #cbd5e0; border-radius: 8px; padding: 3rem; text-align: center; color: #718096; font-weight: 500; margin-bottom: 1.5rem;">
+              [Aquí va la imagen de: Barra de Búsqueda y Filtros]
+            </div>
+
+            <h5 style="font-weight: 600; color: var(--color-text-main); margin-bottom: 0.5rem;">Ver detalles o Editar una cita</h5>
+            <p style="margin-bottom: 0.5rem; color: #4a5568;">En la tabla de citas, cada paciente tiene botones de acciones (del lado derecho). Si haces clic en el botón para Ver detalles, se abrirá una ventana donde podrás:</p>
+            <ul style="list-style-type: disc; padding-left: 1.5rem; margin-bottom: 1.5rem; color: #4a5568; line-height: 1.6;">
+              <li>Cambiar el Estado de la cita (pasarla de Pendiente a Confirmada, Cancelada o Completada).</li>
+              <li>Cambiar la Fecha o la Hora si el paciente se reprograma.</li>
+              <li>Escribir Notas Clínicas (cualquier observación importante sobre el paciente).</li>
+            </ul>
+            <p style="margin-bottom: 1.5rem; color: #4a5568; font-weight: 500;">Recuerda siempre hacer clic en "Guardar Cambios" al terminar.</p>
+
+            <!-- Placeholder for Image -->
+            <div style="background-color: #f7fafc; border: 2px dashed #cbd5e0; border-radius: 8px; padding: 3rem; text-align: center; color: #718096; font-weight: 500; margin-bottom: 1.5rem;">
+              [Aquí va la imagen de: Detalles de Cita]
+            </div>
+
+            <h5 style="font-weight: 600; color: var(--color-text-main); margin-bottom: 0.5rem;">Crear una Nueva Cita (Manualmente)</h5>
+            <p style="margin-bottom: 0.5rem; color: #4a5568;">Si un paciente te llama por teléfono o asiste en persona para agendar:</p>
+            <ul style="list-style-type: disc; padding-left: 1.5rem; margin-bottom: 1.5rem; color: #4a5568; line-height: 1.6;">
+              <li>Haz clic en el botón morado "+ Nueva Cita".</li>
+              <li>Llena sus datos básicos (Nombre, Teléfono, Correo, Edad y Sexo).</li>
+              <li>Selecciona el Estudio, la Fecha y la Hora que desea.</li>
+              <li>Haz clic en "Registrar Cita".</li>
+            </ul>
+
+            <!-- Placeholder for Image -->
+            <div style="background-color: #f7fafc; border: 2px dashed #cbd5e0; border-radius: 8px; padding: 3rem; text-align: center; color: #718096; font-weight: 500; margin-bottom: 1.5rem;">
+              [Aquí va la imagen de: Nueva Cita Manual]
+            </div>
+          </div>
+
+          <!-- Sección 3 -->
+          <div style="margin-bottom: 3rem;">
+            <h4 style="font-size: 1.25rem; font-weight: 600; color: var(--color-aurum-purple-dark); margin-bottom: 1rem; border-bottom: 2px solid var(--color-aurum-pink-light); padding-bottom: 0.5rem;">3. Estadísticas</h4>
+            <p style="margin-bottom: 0.5rem; color: #4a5568; line-height: 1.6;">En el menú lateral izquierdo, encontrarás la opción Estadísticas. Esta sección es perfecta para ver cómo va la clínica de forma visual:</p>
+            <ul style="list-style-type: disc; padding-left: 1.5rem; margin-bottom: 1.5rem; color: #4a5568; line-height: 1.6;">
+              <li>Verás una gráfica que te muestra cuáles son los estudios más solicitados. Así sabrás qué servicios son los más populares.</li>
+              <li>También encontrarás una sección de "Preparación Médica Común", que es una guía rápida con los requisitos (ayunos, ropa sugerida, etc.) para los estudios más comunes. ¡Muy útil para tener la información a la mano cuando hables con los pacientes por teléfono!</li>
+            </ul>
+
+            <!-- Placeholder for Image -->
+            <div style="background-color: #f7fafc; border: 2px dashed #cbd5e0; border-radius: 8px; padding: 3rem; text-align: center; color: #718096; font-weight: 500; margin-bottom: 1.5rem;">
+              [Aquí va la imagen de: Estadísticas y Preparación Médica]
+            </div>
+          </div>
+
+          <!-- Sección 4 -->
+          <div style="margin-bottom: 3rem;">
+            <h4 style="font-size: 1.25rem; font-weight: 600; color: var(--color-aurum-purple-dark); margin-bottom: 1rem; border-bottom: 2px solid var(--color-aurum-pink-light); padding-bottom: 0.5rem;">4. Historial Clínico (Archivo de Pacientes)</h4>
+            <p style="margin-bottom: 0.5rem; color: #4a5568; line-height: 1.6;">La tercera opción del menú izquierdo es el Historial Clínico. Aquí se guardan las citas que ya pasaron (las Completadas o Canceladas). Funciona como un archivo para que nunca pierdas la información de quién ha visitado la clínica.</p>
+            <ul style="list-style-type: disc; padding-left: 1.5rem; margin-bottom: 1.5rem; color: #4a5568; line-height: 1.6;">
+              <li>Puedes buscar pacientes por nombre.</li>
+              <li>Puedes filtrar por fechas específicas.</li>
+              <li><strong>Descargar PDF:</strong> Hay un botón especial llamado "Historial" que tiene un ícono de descarga. Si haces clic ahí, el sistema generará y descargará un documento PDF con la lista de los pacientes que estás viendo en la pantalla, ideal para imprimirlo o tener un reporte del día/semana.</li>
+            </ul>
+
+            <!-- Placeholder for Image -->
+            <div style="background-color: #f7fafc; border: 2px dashed #cbd5e0; border-radius: 8px; padding: 3rem; text-align: center; color: #718096; font-weight: 500; margin-bottom: 1.5rem;">
+              [Aquí va la imagen de: Historial Clínico]
+            </div>
+          </div>
+
+          <!-- Sección 5 -->
+          <div style="margin-bottom: 3rem;">
+            <h4 style="font-size: 1.25rem; font-weight: 600; color: var(--color-aurum-purple-dark); margin-bottom: 1rem; border-bottom: 2px solid var(--color-aurum-pink-light); padding-bottom: 0.5rem;">5. Salir del Sistema</h4>
+            <p style="margin-bottom: 0.5rem; color: #4a5568; line-height: 1.6;">Cuando termines tu jornada o si estás usando una computadora compartida, es importante cerrar tu sesión por seguridad:</p>
+            <ul style="list-style-type: disc; padding-left: 1.5rem; margin-bottom: 1.5rem; color: #4a5568; line-height: 1.6;">
+              <li>Ve a la parte inferior del menú lateral izquierdo.</li>
+              <li>Haz clic en el botón rojo "Cerrar Sesión".</li>
+              <li>Si solo quieres volver a la página web que ven los pacientes, haz clic en "Sitio Público".</li>
+            </ul>
+
+            <!-- Placeholder for Image -->
+            <div style="background-color: #f7fafc; border: 2px dashed #cbd5e0; border-radius: 8px; padding: 3rem; text-align: center; color: #718096; font-weight: 500; margin-bottom: 1.5rem;">
+              [Aquí va la imagen de: Cerrar Sesión]
+            </div>
+          </div>
+
+          <!-- Guía del Sitio Web -->
+          <hr style="border: 1px solid var(--color-aurum-pink-light); margin: 4rem 0 2rem 0; opacity: 0.3;">
+          <h2 class="section-title" style="margin-bottom: 0.5rem; font-size: 1.5rem; text-align: center;">Guía de Navegación - Sitio Web de AURUM (Pacientes)</h2>
+          <p style="margin-bottom: 3rem; color: #4a5568; line-height: 1.6; text-align: center;">Esta guía explica todo lo que tus pacientes encontrarán al visitar el sitio web oficial de AURUM Centro de Imagen Oncológica y Diagnóstico. La página está diseñada para ser rápida, informativa y muy fácil de usar desde cualquier celular o computadora.</p>
+
+          <div style="margin-bottom: 3rem;">
+            <h4 style="font-size: 1.25rem; font-weight: 600; color: var(--color-aurum-purple-dark); margin-bottom: 1rem; border-bottom: 2px solid var(--color-aurum-pink-light); padding-bottom: 0.5rem;">1. Menú de Navegación</h4>
+            <p style="margin-bottom: 0.5rem; color: #4a5568; line-height: 1.6;">En la parte de arriba de la pantalla (o abajo, si están en un celular), los pacientes verán un menú que los lleva rápidamente a las secciones más importantes de la página:</p>
+            <ul style="list-style-type: disc; padding-left: 1.5rem; margin-bottom: 1.5rem; color: #4a5568; line-height: 1.6;">
+              <li><strong>Inicio:</strong> Regresa a la portada principal.</li>
+              <li><strong>Nosotros:</strong> Muestra el perfil médico de la doctora.</li>
+              <li><strong>Servicios:</strong> Lista todos los estudios que realiza la clínica.</li>
+              <li><strong>Encuéntranos:</strong> Muestra el mapa, la dirección y horarios.</li>
+              <li><strong>Agendar Cita:</strong> Un botón destacado que los lleva directo al formulario de citas.</li>
+            </ul>
+
+            <!-- Placeholder for Image -->
+            <div style="background-color: #f7fafc; border: 2px dashed #cbd5e0; border-radius: 8px; padding: 3rem; text-align: center; color: #718096; font-weight: 500; margin-bottom: 1.5rem;">
+              [Aquí va la imagen de: Menú de Navegación del Sitio]
+            </div>
+          </div>
+
+          <div style="margin-bottom: 3rem;">
+            <h4 style="font-size: 1.25rem; font-weight: 600; color: var(--color-aurum-purple-dark); margin-bottom: 1rem; border-bottom: 2px solid var(--color-aurum-pink-light); padding-bottom: 0.5rem;">2. Sobre Nosotros (Perfil Médico)</h4>
+            <p style="margin-bottom: 1.5rem; color: #4a5568; line-height: 1.6;">En esta sección, los pacientes pueden conocer a la especialista a cargo: la Dra. Brigitte Reyes Palmero.<br>Podrán ver su trayectoria profesional, su licenciatura y sus altas especialidades en Radiología Oncológica y Neuroimagen, junto con sus números de cédula. Esto genera confianza y seguridad antes de agendar un estudio.</p>
+
+            <!-- Placeholder for Image -->
+            <div style="background-color: #f7fafc; border: 2px dashed #cbd5e0; border-radius: 8px; padding: 3rem; text-align: center; color: #718096; font-weight: 500; margin-bottom: 1.5rem;">
+              [Aquí va la imagen de: Sobre Nosotros]
+            </div>
+          </div>
+
+          <div style="margin-bottom: 3rem;">
+            <h4 style="font-size: 1.25rem; font-weight: 600; color: var(--color-aurum-purple-dark); margin-bottom: 1rem; border-bottom: 2px solid var(--color-aurum-pink-light); padding-bottom: 0.5rem;">3. Nuestros Servicios</h4>
+            <p style="margin-bottom: 0.5rem; color: #4a5568; line-height: 1.6;">Aquí el sitio le explica a los pacientes qué tipo de estudios pueden realizarse en la clínica, divididos de manera clara:</p>
+            <ul style="list-style-type: disc; padding-left: 1.5rem; margin-bottom: 1.5rem; color: #4a5568; line-height: 1.6;">
+              <li><strong>Catálogo de Ultrasonidos:</strong> (Abdomen, renal, pélvico, mamario, Doppler, etc.).</li>
+              <li><strong>Biopsias y Procedimientos:</strong> (Tiroides, mama, drenajes).</li>
+              <li><strong>Atención a Médicos Remitentes:</strong> Un aviso para que otros doctores sepan que pueden enviar a sus pacientes aquí con total confianza.</li>
+            </ul>
+            
+            <!-- Placeholder for Image -->
+            <div style="background-color: #f7fafc; border: 2px dashed #cbd5e0; border-radius: 8px; padding: 3rem; text-align: center; color: #718096; font-weight: 500; margin-bottom: 1.5rem;">
+              [Aquí va la imagen de: Servicios]
+            </div>
+          </div>
+
+          <div style="margin-bottom: 3rem;">
+            <h4 style="font-size: 1.25rem; font-weight: 600; color: var(--color-aurum-purple-dark); margin-bottom: 1rem; border-bottom: 2px solid var(--color-aurum-pink-light); padding-bottom: 0.5rem;">4. Encuéntranos (Ubicación y Contacto)</h4>
+            <p style="margin-bottom: 0.5rem; color: #4a5568; line-height: 1.6;">Si un paciente necesita saber cómo llegar o a qué hora abren, aquí tiene todo a la mano:</p>
+            <ul style="list-style-type: disc; padding-left: 1.5rem; margin-bottom: 1.5rem; color: #4a5568; line-height: 1.6;">
+              <li><strong>Dirección exacta y horarios de atención:</strong> (Lunes a Viernes de 09:00 a.m. a 02:00 p.m.).</li>
+              <li><strong>Contacto por WhatsApp:</strong> Hay un botón verde; si el paciente lo toca desde su celular, abrirá automáticamente WhatsApp para mandar un mensaje directo a la clínica.</li>
+              <li><strong>Mapa Interactivo:</strong> Un mapa de Google Maps que pueden acercar o alejar, y un botón de "Cómo llegar" que abre el GPS de su celular para guiarlos hasta la puerta de la clínica.</li>
+              <li><strong>Métodos de pago aceptados.</strong></li>
+            </ul>
+
+            <!-- Placeholder for Image -->
+            <div style="background-color: #f7fafc; border: 2px dashed #cbd5e0; border-radius: 8px; padding: 3rem; text-align: center; color: #718096; font-weight: 500; margin-bottom: 1.5rem;">
+              [Aquí va la imagen de: Encuéntranos]
+            </div>
+          </div>
+
+          <div style="margin-bottom: 3rem;">
+            <h4 style="font-size: 1.25rem; font-weight: 600; color: var(--color-aurum-purple-dark); margin-bottom: 1rem; border-bottom: 2px solid var(--color-aurum-pink-light); padding-bottom: 0.5rem;">5. Galería en Acción</h4>
+            <p style="margin-bottom: 1.5rem; color: #4a5568; line-height: 1.6;">Un carrusel de imágenes (que se mueve automáticamente) donde los pacientes pueden ver fotos de las instalaciones, del equipo médico de alta tecnología (los ultrasonidos) y del ambiente de la clínica.</p>
+
+            <!-- Placeholder for Image -->
+            <div style="background-color: #f7fafc; border: 2px dashed #cbd5e0; border-radius: 8px; padding: 3rem; text-align: center; color: #718096; font-weight: 500; margin-bottom: 1.5rem;">
+              [Aquí va la imagen de: Galería]
+            </div>
+          </div>
+
+          <div style="margin-bottom: 3rem;">
+            <h4 style="font-size: 1.25rem; font-weight: 600; color: var(--color-aurum-purple-dark); margin-bottom: 1rem; border-bottom: 2px solid var(--color-aurum-pink-light); padding-bottom: 0.5rem;">6. Agendar Cita en Línea</h4>
+            <p style="margin-bottom: 0.5rem; color: #4a5568; line-height: 1.6;">Esta es la herramienta más útil para captar pacientes las 24 horas del día. Al final de la página, encontrarán un formulario sencillo que deben llenar para pedir una cita.</p>
+            
+            <h5 style="font-weight: 600; color: var(--color-text-main); margin-bottom: 0.5rem;">¿Qué datos llenan?</h5>
+            <ul style="list-style-type: disc; padding-left: 1.5rem; margin-bottom: 1.5rem; color: #4a5568; line-height: 1.6;">
+              <li>Nombre completo.</li>
+              <li>Número de teléfono (para que puedas llamarles).</li>
+              <li>Edad y Sexo.</li>
+              <li>El tipo de estudio que necesitan.</li>
+              <li>La Fecha y Hora en la que les gustaría asistir.</li>
+            </ul>
+
+            <h5 style="font-weight: 600; color: var(--color-text-main); margin-bottom: 0.5rem;">¿Qué pasa después?</h5>
+            <p style="margin-bottom: 1.5rem; color: #4a5568; line-height: 1.6;">Una vez que el paciente da clic en "Agendar", la pantalla le mostrará un mensaje de éxito. Inmediatamente, esa información viajará en silencio hacia tu Panel de Administración. Tú la verás en tu sección de "Pendientes" para que puedas revisar tu agenda y al confirmar el paciente recibirá un correo con la cita confirmada.</p>
+
+            <!-- Placeholder for Image -->
+            <div style="background-color: #f7fafc; border: 2px dashed #cbd5e0; border-radius: 8px; padding: 3rem; text-align: center; color: #718096; font-weight: 500; margin-bottom: 1.5rem;">
+              [Aquí va la imagen de: Formulario de Citas]
+            </div>
+          </div>
+
+          <div style="background-color: var(--color-aurum-purple-dark); color: white; padding: 2rem; border-radius: 8px; text-align: center; margin-top: 3rem;">
+            <h4 style="margin-bottom: 1rem; font-size: 1.1rem;">Tus datos de acceso al Panel de Administración son:</h4>
+            <p style="margin-bottom: 0.5rem;"><strong>Enlace de acceso:</strong> <a href="http://admin.radioonco.com.mx" target="_blank" style="color: #F48FB1;">admin.radioonco.com.mx</a></p>
+            <p style="margin-bottom: 0.5rem;"><strong>Correo Electrónico:</strong> reyesbri474@gmail.com</p>
+            <p style="margin-bottom: 0.5rem;"><strong>Contraseña:</strong> admin#01</p>
+            <p style="margin-top: 1.5rem;"><strong>Enlace de panel público:</strong> <a href="http://radioonco.com.mx" target="_blank" style="color: #F48FB1;">radioonco.com.mx</a></p>
           </div>
         </div>
       </section>
