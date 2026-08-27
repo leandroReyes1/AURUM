@@ -5,7 +5,9 @@ import dns from 'dns';
 dns.setDefaultResultOrder('ipv4first');
 // Configuración del transporter usando las credenciales del .env
 const transporter = nodemailer.createTransport({
-  service: 'gmail',
+  host: process.env.EMAIL_HOST || 'smtp.hostinger.com',
+  port: Number(process.env.EMAIL_PORT) || 465,
+  secure: true, // true para puerto 465 (SSL)
   auth: {
     user: process.env.EMAIL_USUARIO,
     pass: process.env.EMAIL_PASSWORD
