@@ -787,6 +787,18 @@
   <script type="module" src="./src/public-page.js?v=2"></script>
 
   <!-- nav-active-script -->
+  <style>
+    .active-nav-link {
+        color: #4C2B61 !important; /* aurum-purple */
+        font-weight: bold !important;
+        border-bottom: 3px solid #ED3273 !important; /* aurum-pink bar */
+        padding-bottom: 4px;
+    }
+    .active-mobile-link {
+        color: #4C2B61 !important;
+        border-top: 2px solid #4C2B61 !important;
+    }
+  </style>
   <script>
     document.addEventListener("DOMContentLoaded", function() {
       const sections = document.querySelectorAll("section[id]");
@@ -803,25 +815,22 @@
         });
 
         navLinks.forEach(link => {
-          // Remove active styles
-          link.classList.remove("text-aurum-purple", "font-bold", "border-b-2", "border-aurum-purple");
+          link.classList.remove("active-nav-link");
           if (!link.classList.contains("bg-gradient-to-br")) {
             link.classList.add("text-gray-700");
           }
-          
-          // Add active styles if current
           if (link.getAttribute("href") === "#" + current && !link.classList.contains("bg-gradient-to-br")) {
              link.classList.remove("text-gray-700");
-             link.classList.add("text-aurum-purple", "font-bold", "border-b-2", "border-aurum-purple");
+             link.classList.add("active-nav-link");
           }
         });
         
         mobileLinks.forEach(link => {
-          link.classList.remove("text-aurum-purple", "text-aurum-pink", "border-t-2", "border-aurum-purple");
+          link.classList.remove("active-mobile-link");
           link.classList.add("text-gray-500");
           if (link.getAttribute("href") === "#" + current) {
              link.classList.remove("text-gray-500");
-             link.classList.add("text-aurum-purple", "border-t-2", "border-aurum-purple");
+             link.classList.add("active-mobile-link");
           }
         });
       }
