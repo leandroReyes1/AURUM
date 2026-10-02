@@ -124,7 +124,7 @@
   <!-- ═══════════════════════════════════════════ -->
   <!-- HERO                                        -->
   <!-- ═══════════════════════════════════════════ -->
-  <section id="inicio" class="hero-bg min-h-[85vh] flex items-center pt-36 md:pt-44 pb-16 relative overflow-hidden">
+  <section id="inicio" class="scroll-mt-28 hero-bg min-h-[85vh] flex items-center pt-36 md:pt-44 pb-16 relative overflow-hidden">
     <!-- Fade bottom -->
     <div class="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-aurum-bg to-transparent pointer-events-none">
     </div>
@@ -155,7 +155,7 @@
   <!-- ═══════════════════════════════════════════ -->
   <!-- SOBRE NOSOTROS                              -->
   <!-- ═══════════════════════════════════════════ -->
-  <section id="nosotros" class="py-20 bg-white">
+  <section id="nosotros" class="scroll-mt-28 py-20 bg-white">
     <div class="max-w-6xl mx-auto px-6">
       <!-- Section Title -->
       <div class="text-center mb-14">
@@ -259,7 +259,7 @@
   <!-- ═══════════════════════════════════════════ -->
   <!-- NUESTROS SERVICIOS                          -->
   <!-- ═══════════════════════════════════════════ -->
-  <section id="servicios" class="py-20 bg-white">
+  <section id="servicios" class="scroll-mt-28 py-20 bg-white">
     <div class="max-w-6xl mx-auto px-6">
       <div class="text-center mb-14">
         <h2 class="font-title text-3xl md:text-4xl font-bold text-aurum-purple-dark mb-3">Nuestros Servicios</h2>
@@ -324,7 +324,7 @@
   <!-- ═══════════════════════════════════════════ -->
   <!-- DATOS DE OPERACIÓN                          -->
   <!-- ═══════════════════════════════════════════ -->
-  <section id="operacion" class="py-16 bg-aurum-bg">
+  <section id="operacion" class="scroll-mt-28 py-16 bg-aurum-bg">
     <div class="max-w-6xl mx-auto px-6">
       <div class="text-center mb-10">
         <h2 class="font-title text-3xl font-bold text-aurum-purple-dark mb-3">Encuéntranos</h2>
@@ -570,7 +570,7 @@
   <!-- ═══════════════════════════════════════════ -->
   <!-- AGENDAR CITA                                -->
   <!-- ═══════════════════════════════════════════ -->
-  <section id="citas" class="py-12 md:py-20 bg-gradient-to-br from-pink-50 to-aurum-bg">
+  <section id="citas" class="scroll-mt-28 py-12 md:py-20 bg-gradient-to-br from-pink-50 to-aurum-bg">
     <div class="max-w-2xl mx-auto px-4 sm:px-6">
       <div class="bg-white rounded-3xl shadow-xl p-5 sm:p-8 md:p-12 border border-gray-100">
         <div class="text-center mb-8">
@@ -803,22 +803,25 @@
         });
 
         navLinks.forEach(link => {
-          link.classList.remove("text-aurum-purple", "font-bold");
+          // Remove active styles
+          link.classList.remove("text-aurum-purple", "font-bold", "border-b-2", "border-aurum-purple");
           if (!link.classList.contains("bg-gradient-to-br")) {
             link.classList.add("text-gray-700");
           }
+          
+          // Add active styles if current
           if (link.getAttribute("href") === "#" + current && !link.classList.contains("bg-gradient-to-br")) {
              link.classList.remove("text-gray-700");
-             link.classList.add("text-aurum-purple", "font-bold");
+             link.classList.add("text-aurum-purple", "font-bold", "border-b-2", "border-aurum-purple");
           }
         });
         
         mobileLinks.forEach(link => {
-          link.classList.remove("text-aurum-purple", "text-aurum-pink");
+          link.classList.remove("text-aurum-purple", "text-aurum-pink", "border-t-2", "border-aurum-purple");
           link.classList.add("text-gray-500");
           if (link.getAttribute("href") === "#" + current) {
              link.classList.remove("text-gray-500");
-             link.classList.add("text-aurum-purple");
+             link.classList.add("text-aurum-purple", "border-t-2", "border-aurum-purple");
           }
         });
       }
