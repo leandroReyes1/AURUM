@@ -12,14 +12,13 @@
   <meta property="og:type" content="website">
   <meta property="og:title" content="Aurum | Centro de Imagen Oncológica y Diagnóstico">
   <meta property="og:description" content="Especialistas en radiología oncológica, ultrasonidos y biopsias. Dirigido por la Dra. Brigitte Reyes Palmero.">
-  <!-- Reemplaza la URL 'https://tusitioweb.com' por el dominio real de la clínica -->
-  <meta property="og:image" content="https://tusitioweb.com/assets/images/logos/logo01_round.png">
-  <meta property="og:url" content="https://tusitioweb.com/">
+  <meta property="og:image" content="https://radioonco.com.mx/assets/images/logos/logo_wa_final.png">
+  <meta property="og:url" content="https://radioonco.com.mx/">
   
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Aurum | Centro de Imagen Oncológica y Diagnóstico">
   <meta name="twitter:description" content="Especialistas en radiología oncológica, ultrasonidos y biopsias. Dirigido por la Dra. Brigitte Reyes Palmero.">
-  <meta name="twitter:image" content="https://tusitioweb.com/assets/images/logos/logo01_round.png">
+  <meta name="twitter:image" content="https://radioonco.com.mx/assets/images/logos/logo_wa_final.png">
 
   <title>Aurum | Centro de Imagen Oncológica y Diagnóstico</title>
   
@@ -786,6 +785,48 @@
 
   <!-- Lógica de Negocio y UI -->
   <script type="module" src="./src/public-page.js?v=2"></script>
+
+  <!-- nav-active-script -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const sections = document.querySelectorAll("section[id]");
+      const navLinks = document.querySelectorAll("nav ul li a[href^='#']");
+      const mobileLinks = document.querySelectorAll("nav.fixed a[href^='#']");
+
+      function updateActiveLink() {
+        let current = "";
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop;
+          if (scrollY >= (sectionTop - 200)) {
+            current = section.getAttribute("id");
+          }
+        });
+
+        navLinks.forEach(link => {
+          link.classList.remove("text-aurum-purple", "font-bold");
+          if (!link.classList.contains("bg-gradient-to-br")) {
+            link.classList.add("text-gray-700");
+          }
+          if (link.getAttribute("href") === "#" + current && !link.classList.contains("bg-gradient-to-br")) {
+             link.classList.remove("text-gray-700");
+             link.classList.add("text-aurum-purple", "font-bold");
+          }
+        });
+        
+        mobileLinks.forEach(link => {
+          link.classList.remove("text-aurum-purple", "text-aurum-pink");
+          link.classList.add("text-gray-500");
+          if (link.getAttribute("href") === "#" + current) {
+             link.classList.remove("text-gray-500");
+             link.classList.add("text-aurum-purple");
+          }
+        });
+      }
+
+      window.addEventListener("scroll", updateActiveLink);
+      updateActiveLink(); // run once on load
+    });
+  </script>
 </body>
 
 </html>
