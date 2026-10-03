@@ -149,7 +149,43 @@
           Conoce Nuestros Servicios
         </a>
       </div>
-    </div>
+    
+      <!-- Efecto visual decorativo (Solo Escritorio) -->
+      <div class="hidden lg:flex absolute right-10 top-1/2 -translate-y-1/2 w-[500px] h-[500px] pointer-events-none justify-center items-center">
+        
+        <!-- Orbes de luz animados -->
+        <!-- Estilos en linea para asegurar la animacion sin compilar tailwind -->
+        <style>
+          @keyframes float-slow {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-20px) scale(1.05); }
+          }
+          @keyframes float-delayed {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(20px) scale(0.95); }
+          }
+          @keyframes spin-slow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+          }
+        </style>
+        
+        <div class="absolute w-80 h-80 rounded-full mix-blend-multiply opacity-60" style="background-color: #ED3273; filter: blur(60px); animation: float-slow 6s ease-in-out infinite; top: 0; right: 20px;"></div>
+        
+        <div class="absolute w-96 h-96 rounded-full mix-blend-multiply opacity-50" style="background-color: #4C2B61; filter: blur(70px); animation: float-delayed 8s ease-in-out infinite; bottom: -20px; left: 0;"></div>
+        
+        <div class="absolute w-64 h-64 rounded-full mix-blend-multiply opacity-40" style="background: linear-gradient(to right, #4C2B61, #ED3273); filter: blur(50px); animation: float-slow 7s ease-in-out infinite; left: 80px; top: 40px;"></div>
+
+        <!-- Anillo giratorio de decoracion -->
+        <div class="absolute w-[350px] h-[350px] rounded-full border border-dashed opacity-30" style="border-color: #ED3273; animation: spin-slow 20s linear infinite;"></div>
+        
+        <!-- Esfera de cristal central (Glassmorphism) -->
+        <div class="relative w-64 h-64 rounded-full shadow-2xl flex items-center justify-center backdrop-blur-md" style="background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.3); animation: float-slow 5s ease-in-out infinite;">
+            <!-- Icono o logo dentro de la esfera -->
+            <img src="./assets/images/logos/logo-icon.svg" class="w-32 h-32 opacity-80" alt="Aurum Decor" style="filter: drop-shadow(0px 10px 15px rgba(76, 43, 97, 0.4));">
+        </div>
+      </div>
+</div>
   </section>
 
   <!-- ═══════════════════════════════════════════ -->
