@@ -151,12 +151,18 @@
       </div>
     
       <!-- Efecto visual decorativo (Solo Escritorio) -->
-      <div class="hidden lg:flex absolute right-10 top-1/2 -translate-y-1/2 w-[500px] h-[500px] pointer-events-none justify-center items-center">
+      <div class="hero-decor-container absolute right-10 top-1/2 -translate-y-1/2 w-[500px] h-[500px] pointer-events-none justify-center items-center">
         
         <!-- Orbes de luz animados -->
         <!-- Estilos en linea para asegurar la animacion sin compilar tailwind -->
+        
         <style>
+          .hero-decor-container { display: none !important; }
+          @media (min-width: 1024px) {
+            .hero-decor-container { display: flex !important; }
+          }
           @keyframes float-slow {
+
             0%, 100% { transform: translateY(0) scale(1); }
             50% { transform: translateY(-20px) scale(1.05); }
           }
